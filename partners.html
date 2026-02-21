@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEYD Kenya — North Eastern Youth Development</title>
+  <title>NEYD Kenya â€” North Eastern Youth Development</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"
     rel="stylesheet">
@@ -42,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* ── SCROLLBAR ── */
+    /* â”€â”€ SCROLLBAR â”€â”€ */
     ::-webkit-scrollbar {
       width: 4px;
     }
@@ -56,7 +56,7 @@
       border-radius: 2px;
     }
 
-    /* ── NAV ── */
+    /* â”€â”€ NAV â”€â”€ */
     nav {
       position: fixed;
       top: 0;
@@ -219,7 +219,7 @@
       color: var(--white) !important;
     }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     #home {
       min-height: 100vh;
       background: var(--green-dk);
@@ -465,7 +465,7 @@
       margin-top: .25rem;
     }
 
-    /* ── SECTION BASE ── */
+    /* â”€â”€ SECTION BASE â”€â”€ */
     section {
       padding: 7rem 5rem;
     }
@@ -511,7 +511,7 @@
       color: var(--green-dk);
     }
 
-    /* ── WHO WE ARE ── */
+    /* â”€â”€ WHO WE ARE â”€â”€ */
     #who {
       background: var(--white);
       display: grid;
@@ -679,7 +679,7 @@
       font-weight: 300;
     }
 
-    /* ── PROGRAMS ── */
+    /* â”€â”€ PROGRAMS â”€â”€ */
     #programs {
       background: var(--ivory);
     }
@@ -795,7 +795,7 @@
       width: 28px;
     }
 
-    /* ── CHAPTERS ── */
+    /* â”€â”€ CHAPTERS â”€â”€ */
     #chapters {
       background: var(--green-dk);
       position: relative;
@@ -976,7 +976,7 @@
       background: rgba(255, 255, 255, .25);
     }
 
-    /* ── PARTNERS ── */
+    /* â”€â”€ PARTNERS â”€â”€ */
     #partners {
       background: var(--ivory);
       text-align: center;
@@ -1034,7 +1034,7 @@
       color: var(--white);
     }
 
-    /* ── WHERE WE WORK ── */
+    /* â”€â”€ WHERE WE WORK â”€â”€ */
     #where {
       background: var(--white);
       display: grid;
@@ -1222,7 +1222,7 @@
       flex-shrink: 0;
     }
 
-    /* ── GALLERY ── */
+    /* â”€â”€ GALLERY â”€â”€ */
     #gallery {
       background: var(--ink);
       padding: 7rem 5rem;
@@ -1363,7 +1363,7 @@
       background: rgba(255, 255, 255, .07);
     }
 
-    /* ── CONTACT ── */
+    /* â”€â”€ CONTACT â”€â”€ */
     #contact {
       background: var(--ivory);
       display: grid;
@@ -1519,7 +1519,7 @@
       background: var(--sand-lt);
     }
 
-    /* ── FOOTER ── */
+    /* â”€â”€ FOOTER â”€â”€ */
     footer {
       background: var(--ink);
       padding: 4rem 5rem 2rem;
@@ -1629,7 +1629,7 @@
       border-color: var(--sand);
     }
 
-    /* ── ANIMATIONS ── */
+    /* â”€â”€ ANIMATIONS â”€â”€ */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -1677,10 +1677,99 @@
       transition-delay: .3s;
     }
 
-    /* ── MOBILE ── */
+    /* â”€â”€ HAMBURGER MENU â”€â”€ */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 201;
+      padding: 0;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s ease;
+    }
+
+    nav.scrolled .nav-hamburger span {
+      background: var(--ink);
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-hamburger.open span {
+      background: var(--white) !important;
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 78, 54, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .nav-mobile-menu a {
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      transition: color .25s;
+      padding: .5rem 0;
+    }
+
+    .nav-mobile-menu a:hover,
+    .nav-mobile-menu a.active {
+      color: var(--sand);
+    }
+
+    .nav-mobile-menu a.nav-cta {
+      background: var(--green);
+      color: var(--white);
+      padding: .7rem 2rem;
+      border-radius: 2px;
+      margin-top: 1rem;
+    }
+
+    /* â”€â”€ MOBILE â”€â”€ */
     @media(max-width:960px) {
       nav {
         padding: 1.2rem 1.5rem;
+        z-index: 202;
       }
 
       nav.scrolled {
@@ -1691,8 +1780,70 @@
         display: none;
       }
 
+      .nav-hamburger {
+        display: flex;
+      }
+
+      /* Who We Are: logo + quote overlap fix */
+      .who-visual {
+        min-height: 400px;
+      }
+
+      .who-logo-display img {
+        width: 120px !important;
+        height: 120px !important;
+      }
+
+      .who-quote {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        margin: 1.5rem 1.5rem;
+      }
+
+      /* Partners: ecosystem map fix */
+      .ecosystem-map-container {
+        height: auto !important;
+        min-height: 300px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2rem !important;
+        padding: 2rem 0 !important;
+      }
+
+      .ecosystem-map-container svg {
+        display: none !important;
+      }
+
+      .ecosystem-map-node {
+        position: static !important;
+        transform: none !important;
+      }
+
+      .ecosystem-map-center {
+        position: static !important;
+      }
+
+      .ecosystem-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .partnership-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .become-partner-section {
+        padding: 4rem 1.5rem !important;
+      }
+
       section {
         padding: 4rem 1.5rem;
+      }
+
+      .page-header {
+        padding: 7rem 1.5rem 3rem !important;
       }
 
       #who,
@@ -1704,6 +1855,10 @@
       .who-visual,
       .where-map {
         min-height: 300px;
+      }
+
+      .who-pillars {
+        grid-template-columns: 1fr;
       }
 
       .hero-content {
@@ -1725,6 +1880,7 @@
 
       .chapters-inner {
         grid-template-columns: 1fr;
+        gap: 3rem;
       }
 
       .chapter-grid {
@@ -1748,6 +1904,17 @@
 
       .footer-top {
         grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bot {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      footer {
+        padding: 3rem 1.5rem 1.5rem;
       }
 
       .who-content,
@@ -1755,6 +1922,132 @@
       .where-info,
       .contact-form-wrap {
         padding: 3rem 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      /* Inline-style responsive overrides */
+      .impact-banner {
+        padding: 3rem 1.5rem !important;
+      }
+
+      .impact-banner-inner {
+        gap: 2rem !important;
+      }
+
+      .impact-divider {
+        display: none !important;
+      }
+
+      .overview-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+
+      .home-programs-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .gallery-preview-section {
+        padding: 3rem 1.5rem 4rem !important;
+      }
+
+      .gallery-preview-grid {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
+
+      .gallery-preview-grid>div {
+        min-height: 250px !important;
+      }
+
+      .home-cta-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .spotlight-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .spotlight-cards {
+        flex-direction: column !important;
+      }
+
+      .start-chapter-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .featured-story {
+        flex-direction: column !important;
+      }
+
+      .featured-story>div {
+        min-width: 100% !important;
+      }
+
+      .social-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .hubs-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .faq-section {
+        padding: 4rem 1.5rem !important;
+      }
+
+      .partner-block {
+        min-width: 140px;
+        padding: 1.2rem 1.5rem;
+      }
+    }
+
+    @media(max-width:480px) {
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+      }
+
+      .hero-body {
+        font-size: .9rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5,
+      .g6 {
+        min-height: 160px;
+      }
+
+      .impact-stat {
+        min-width: 150px !important;
+      }
+
+      .impact-stat-number {
+        font-size: 2.2rem !important;
       }
     }
   </style>
@@ -1778,7 +2071,23 @@
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html">Home</a>
+    <a href="who-we-are.html">Who We Are</a>
+    <a href="programs.html">Programs</a>
+    <a href="chapters.html">University Chapters</a>
+    <a href="partners.html" class="active">Partners</a>
+    <a href="where-we-work.html">Where We Work</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
   <!-- PAGE HEADER -->
   <header class="page-header"
     style="background:var(--green-dk); padding:10rem 5rem 4rem; text-align:center; position:relative; overflow:hidden;">
@@ -1823,26 +2132,36 @@
       with global resources, ensuring sustainable development across North Eastern Kenya.
     </p>
 
-    <div
+    <div class="ecosystem-map-container"
       style="max-width:900px; margin:0 auto; position:relative; height:500px; display:flex; align-items:center; justify-content:center; background:radial-gradient(ellipse at center, rgba(58,107,74,0.05) 0%, transparent 70%);">
 
       <!-- Central Node -->
-      <div
+      <div class="ecosystem-map-center"
         style="width:120px; height:120px; background:var(--green-dk); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; z-index:10; box-shadow:0 0 40px rgba(58,107,74,0.3); border:4px solid var(--white);">
         <span
           style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:var(--white);">NEYD</span>
       </div>
 
       <!-- Connecting SVG Lines -->
-      <svg style="position:absolute; inset:0; width:100%; height:100%; z-index:1;" preserveAspectRatio="xMidYMid meet">
+      <svg style="position:absolute; inset:0; width:100%; height:100%; z-index:1;" preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 900 500">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill="var(--ink-lt)" />
+          </marker>
+        </defs>
         <!-- To Local Sponsors -->
-        <line x1="450" y1="250" x2="250" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <line x1="450" y1="250" x2="250" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5"
+          marker-end="url(#arrowhead)" />
         <!-- To Int NGOs -->
-        <line x1="450" y1="250" x2="650" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <line x1="450" y1="250" x2="650" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5"
+          marker-end="url(#arrowhead)" />
         <!-- To Gov Bodies -->
-        <line x1="450" y1="250" x2="250" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <line x1="450" y1="250" x2="250" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5"
+          marker-end="url(#arrowhead)" />
         <!-- To Universities -->
-        <line x1="450" y1="250" x2="650" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <line x1="450" y1="250" x2="650" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5"
+          marker-end="url(#arrowhead)" />
 
         <!-- Orbital Paths -->
         <circle cx="450" cy="250" r="180" fill="none" stroke="rgba(58,107,74,0.1)" stroke-width="1" />
@@ -1850,13 +2169,12 @@
 
       <!-- Satellite Nodes -->
       <!-- Node 1: Local Sponsors -->
-      <div
-        style="position:absolute; top:20%; left:20%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+      <div class="ecosystem-map-node"
+        style="position:absolute; top:calc((150 / 500) * 100%); left:calc((250 / 900) * 100%); transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
         onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
         onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
         <div
           style="width:60px; height:60px; background:var(--white); border:2px solid var(--sand); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:1rem;">🤝</span>
         </div>
         <div
           style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
@@ -1864,13 +2182,12 @@
       </div>
 
       <!-- Node 2: Int NGOs -->
-      <div
-        style="position:absolute; top:20%; left:80%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+      <div class="ecosystem-map-node"
+        style="position:absolute; top:calc((150 / 500) * 100%); left:calc((650 / 900) * 100%); transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
         onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
         onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
         <div
           style="width:60px; height:60px; background:var(--white); border:2px solid var(--blue); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:1rem;">🌍</span>
         </div>
         <div
           style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
@@ -1878,13 +2195,12 @@
       </div>
 
       <!-- Node 3: Govt Bodies -->
-      <div
-        style="position:absolute; top:80%; left:20%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+      <div class="ecosystem-map-node"
+        style="position:absolute; top:calc((350 / 500) * 100%); left:calc((250 / 900) * 100%); transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
         onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
         onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
         <div
           style="width:60px; height:60px; background:var(--white); border:2px solid var(--ink-mid); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:1rem;">🏛️</span>
         </div>
         <div
           style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
@@ -1892,13 +2208,12 @@
       </div>
 
       <!-- Node 4: Universities -->
-      <div
-        style="position:absolute; top:80%; left:80%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+      <div class="ecosystem-map-node"
+        style="position:absolute; top:calc((350 / 500) * 100%); left:calc((650 / 900) * 100%); transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
         onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
         onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
         <div
           style="width:60px; height:60px; background:var(--white); border:2px solid var(--green-lt); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:1rem;">🎓</span>
         </div>
         <div
           style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
@@ -1973,7 +2288,7 @@
         <div class="fb-brand" style="display:flex; align-items:center; gap:0.8rem;">
           <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 55px; width: 55px; object-fit: contain;">
         </div>
-        <p class="fb-desc">North Eastern Youth Development — empowering young people to lead, build, and transform
+        <p class="fb-desc">North Eastern Youth Development â€” empowering young people to lead, build, and transform
           communities across North Eastern Kenya.</p>
       </div>
       <div class="fc">
@@ -2005,7 +2320,7 @@
       </div>
     </div>
     <div class="footer-bot">
-      <span class="footer-copy">© 2025 NEYD Kenya. All rights reserved. North Eastern Youth Development.</span>
+      <span class="footer-copy">Â© 2025 NEYD Kenya. All rights reserved. North Eastern Youth Development.</span>
       <div class="social-row">
         <a href="#" class="soc">X</a>
         <a href="#" class="soc">in</a>
@@ -2016,16 +2331,32 @@
   </footer>
 
   <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    // Close menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
     // Nav scroll
     const nav = document.getElementById('nav');
     const navAcr = document.getElementById('nav-acr');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 80) {
         nav.classList.add('scrolled');
-        navAcr.classList.remove('nav-acronym-light');
+        if (navAcr) navAcr.classList.remove('nav-acronym-light');
       } else {
         nav.classList.remove('scrolled');
-        navAcr.classList.add('nav-acronym-light');
+        if (navAcr) navAcr.classList.add('nav-acronym-light');
       }
     });
 
