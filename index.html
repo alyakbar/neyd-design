@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEYD Kenya — North Eastern Youth Development</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green: #3a6b4a;
+      --green-dk: #2a4e36;
+      --green-lt: #4f8962;
+      --blue: #3a9cb8;
+      --blue-lt: #5cb8d4;
+      --sand: #d4a574;
+      --sand-lt: #e8c49a;
+      --ivory: #f7f3ee;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --ink-mid: #4a4a4a;
+      --ink-lt: #8a8a8a;
+      --rule: rgba(58, 107, 74, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ivory);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 5rem;
+      transition: all .5s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(247, 243, 238, 0.96);
+      backdrop-filter: blur(16px);
+      padding: 1rem 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-logo-inner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo-map {
+      width: 14px;
+      height: 18px;
+      background: var(--sand);
+      clip-path: polygon(30% 0%, 70% 0%, 95% 20%, 100% 50%, 80% 80%, 60% 100%, 40% 95%, 10% 70%, 0% 40%, 15% 15%);
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-acronym {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dk);
+      letter-spacing: .08em;
+    }
+
+    nav.scrolled .nav-acronym {
+      color: var(--green-dk);
+    }
+
+    .nav-acronym-light {
+      color: var(--white);
+    }
+
+    .nav-full {
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: .15rem;
+    }
+
+    nav:not(.scrolled) .nav-full {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      transition: color .25s;
+      position: relative;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--ink-mid);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--sand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    nav.scrolled .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: .6rem 1.6rem;
+      border-radius: 2px;
+      letter-spacing: .12em !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--green-dk) !important;
+    }
+
+    nav.scrolled .nav-cta:hover {
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: var(--green-dk);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(58, 107, 74, .9), rgba(42, 78, 54, .95)),
+        repeating-linear-gradient(-45deg,
+          transparent, transparent 40px,
+          rgba(255, 255, 255, .015) 40px, rgba(255, 255, 255, .015) 41px);
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      left: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(212, 165, 116, .25);
+    }
+
+    .hero-accent-line-2 {
+      position: absolute;
+      right: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(58, 156, 184, .15);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 7rem;
+      max-width: 1100px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    .eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .eyebrow-text {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 2rem;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .hero-title strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Slider */
+    .slide-container {
+      overflow: hidden;
+      height: 1.1em;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    .slide-inner {
+      display: flex;
+      flex-direction: column;
+      animation: textSlide 9s ease-in-out infinite;
+    }
+
+    .slide-inner span {
+      display: block;
+      height: 1.1em;
+      line-height: 1.1em;
+      color: var(--blue-lt);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    @keyframes textSlide {
+
+      0%,
+      25% {
+        transform: translateY(0);
+      }
+
+      33%,
+      58% {
+        transform: translateY(-1.1em);
+      }
+
+      66%,
+      91% {
+        transform: translateY(-2.2em);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      animation: fadeUp .9s .3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--sand);
+      color: var(--ink);
+      padding: .9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: all .3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--sand-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      color: rgba(255, 255, 255, .7);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      transition: color .25s;
+    }
+
+    .btn-ghost span {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+      transition: width .3s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+    }
+
+    .btn-ghost:hover span {
+      width: 40px;
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 5rem;
+      bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      animation: fadeLeft .9s .5s ease both;
+      z-index: 2;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-unit {
+      color: var(--sand);
+      font-size: 1.5rem;
+    }
+
+    .stat-lbl {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-top: .25rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 5rem;
+    }
+
+    .s-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .s-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .s-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .s-title.light {
+      color: var(--white);
+    }
+
+    .s-title.green {
+      color: var(--green-dk);
+    }
+
+    /* ── WHO WE ARE ── */
+    #who {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .who-visual {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .who-geo {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 60% 40%, rgba(58, 156, 184, .25), transparent 60%),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px);
+    }
+
+    .who-logo-display {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .who-logo-ring {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .who-logo-ring::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .15);
+    }
+
+    .who-logo-inner-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .who-map-shape {
+      width: 55px;
+      height: 72px;
+      background: var(--sand);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .who-logo-text {
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: .25em;
+      color: rgba(255, 255, 255, .5);
+      text-transform: uppercase;
+    }
+
+    .who-logo-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .who-quote {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      right: 2.5rem;
+      border-left: 2px solid var(--sand);
+      padding-left: 1.2rem;
+    }
+
+    .who-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.6;
+    }
+
+    .who-content {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .who-body {
+      color: var(--ink-mid);
+      line-height: 1.85;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .who-body+.who-body {
+      margin-top: 1rem;
+    }
+
+    .who-pillars {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .pillar {
+      background: var(--ivory);
+      padding: 1.4rem 1.6rem;
+    }
+
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .pillar h4 {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      margin-bottom: .3rem;
+    }
+
+    .pillar p {
+      font-size: .82rem;
+      color: var(--ink-lt);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── PROGRAMS ── */
+    #programs {
+      background: var(--ivory);
+    }
+
+    .programs-header {
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    .programs-body {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .prog-card {
+      background: var(--white);
+      padding: 2.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: default;
+    }
+
+    .prog-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+
+    .prog-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .prog-card:hover {
+      background: var(--ivory);
+    }
+
+    .prog-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color .3s;
+    }
+
+    .prog-card:hover .prog-num {
+      color: rgba(58, 107, 74, .15);
+    }
+
+    .prog-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      margin-bottom: .8rem;
+      line-height: 1.3;
+    }
+
+    .prog-text {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .prog-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.4rem;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      transition: gap .25s, color .25s;
+    }
+
+    .prog-link::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      transition: width .25s;
+    }
+
+    .prog-link:hover {
+      color: var(--blue);
+    }
+
+    .prog-link:hover::after {
+      width: 28px;
+    }
+
+    /* ── CHAPTERS ── */
+    #chapters {
+      background: var(--green-dk);
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 5rem;
+    }
+
+    .chapters-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(58, 156, 184, .12), transparent 60%),
+        repeating-linear-gradient(-30deg, transparent, transparent 80px, rgba(255, 255, 255, .02) 80px, rgba(255, 255, 255, .02) 81px);
+    }
+
+    .chapters-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chap-info .s-label {
+      margin-bottom: 1rem;
+    }
+
+    .chap-desc {
+      color: rgba(255, 255, 255, .5);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: .95rem;
+      margin-top: 1.2rem;
+    }
+
+    .progress-stack {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .prog-row {}
+
+    .prog-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+    }
+
+    .prog-name {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .prog-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--sand);
+    }
+
+    .prog-track {
+      height: 1px;
+      background: rgba(255, 255, 255, .1);
+      position: relative;
+    }
+
+    .prog-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--sand), var(--blue-lt));
+      transition: width 2s ease;
+    }
+
+    .prog-fill-dot {
+      position: absolute;
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .06);
+      align-content: start;
+    }
+
+    .chap-card {
+      background: rgba(255, 255, 255, .04);
+      padding: 1.8rem;
+      transition: background .3s;
+      border: 1px solid transparent;
+    }
+
+    .chap-card:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(212, 165, 116, .2);
+    }
+
+    .chap-region {
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: .6rem;
+    }
+
+    .chap-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: .5rem;
+      line-height: 1.3;
+    }
+
+    .chap-meta {
+      font-size: .78rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.6;
+    }
+
+    .chap-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .8rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 1px;
+    }
+
+    .status-visited {
+      background: rgba(212, 165, 116, .15);
+      color: var(--sand);
+      border: 1px solid rgba(212, 165, 116, .25);
+    }
+
+    .status-visited::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .status-pending {
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .35);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .status-pending::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .25);
+    }
+
+    /* ── PARTNERS ── */
+    #partners {
+      background: var(--ivory);
+      text-align: center;
+    }
+
+    .partners-top {
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .partners-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: .8rem;
+    }
+
+    .partners-sub {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .partner-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .partner-block {
+      background: var(--white);
+      padding: 1.8rem 3rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      transition: all .3s;
+      cursor: default;
+      min-width: 180px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .partner-block:hover {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    /* ── WHERE WE WORK ── */
+    #where {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .where-info {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .where-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .where-stats {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .ws-item {
+      display: flex;
+      align-items: baseline;
+      gap: .8rem;
+    }
+
+    .ws-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      line-height: 1;
+    }
+
+    .ws-txt {
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+    }
+
+    .where-map {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 60% 50%, rgba(58, 156, 184, .2), transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px),
+        repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px);
+    }
+
+    /* SVG Kenya outline simplified as pins on grid */
+    .map-canvas {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-kenya {
+      width: 260px;
+      height: 300px;
+      position: relative;
+    }
+
+    .map-outline {
+      position: absolute;
+      inset: 0;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .map-pin::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .2;
+      animation: pinPulse 2s ease-in-out infinite;
+    }
+
+    .map-pin:hover {
+      transform: scale(1.6);
+    }
+
+    .map-pin.visited {
+      background: var(--sand);
+      color: var(--sand);
+    }
+
+    .map-pin.pending {
+      background: var(--blue-lt);
+      color: var(--blue-lt);
+    }
+
+    @keyframes pinPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .2;
+      }
+
+      50% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .map-tooltip {
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      color: var(--ink);
+      padding: .35rem .7rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+
+    .map-pin:hover .map-tooltip {
+      opacity: 1;
+    }
+
+    .map-legend {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .ml-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .ml-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      background: var(--ink);
+      padding: 7rem 5rem;
+    }
+
+    .gallery-header {
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 3px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--green-dk);
+    }
+
+    .g1 {
+      grid-column: span 5;
+      grid-row: span 2;
+      min-height: 360px;
+    }
+
+    .g2 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g3 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g4 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g5 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g6 {
+      grid-column: span 7;
+      min-height: 240px;
+    }
+
+    .g-fill {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s ease;
+    }
+
+    .g-item:hover .g-fill {
+      transform: scale(1.04);
+    }
+
+    .g-bg1 {
+      background: linear-gradient(160deg, #2a4e36, #1a3328);
+    }
+
+    .g-bg2 {
+      background: linear-gradient(145deg, #1e3d50, #0d2438);
+    }
+
+    .g-bg3 {
+      background: linear-gradient(135deg, #3a4e2a, #2a3820);
+    }
+
+    .g-bg4 {
+      background: linear-gradient(120deg, #3a2a1a, #2a1a0a);
+    }
+
+    .g-bg5 {
+      background: linear-gradient(150deg, #1a2a3a, #0a1a2a);
+    }
+
+    .g-bg6 {
+      background: linear-gradient(130deg, #2a3a2a, #1a2a1a);
+    }
+
+    .g-label {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.5rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      transition: color .3s;
+    }
+
+    .g-item:hover .g-label {
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent 50%);
+      opacity: 0;
+      transition: opacity .35s;
+    }
+
+    .g-item:hover .g-overlay {
+      opacity: 1;
+    }
+
+    /* Geo shapes inside gallery items */
+    .geo-shape {
+      width: 80px;
+      height: 100px;
+      background: rgba(255, 255, 255, .06);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .geo-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .geo-line-h {
+      width: 80px;
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ivory);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .contact-info {
+      padding: 5rem;
+      background: var(--ivory);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .contact-lines {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .cl-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cl-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      min-width: 70px;
+      padding-top: 2px;
+    }
+
+    .cl-val {
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .contact-form-wrap {
+      padding: 5rem;
+      background: var(--green-dk);
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .form-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .fg {
+      margin-bottom: 1.2rem;
+    }
+
+    .fg label {
+      display: block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: .4rem;
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: .75rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--white);
+      border-radius: 1px;
+      outline: none;
+      transition: border-color .25s, background .25s;
+      appearance: none;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: rgba(212, 165, 116, .4);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .fg select option {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    .fg textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--sand);
+      color: var(--ink);
+      border: none;
+      cursor: pointer;
+      padding: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+      margin-top: .5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--sand-lt);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 4rem 5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .fb-brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1rem;
+    }
+
+    .fb-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .1em;
+    }
+
+    .fb-acr span {
+      color: var(--sand);
+    }
+
+    .fb-desc {
+      font-size: .8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .35);
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .fc h5 {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 1.2rem;
+    }
+
+    .fc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .fc ul a {
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      transition: color .25s;
+    }
+
+    .fc ul a:hover {
+      color: var(--sand);
+    }
+
+    .footer-bot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.8rem;
+    }
+
+    .footer-copy {
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .25);
+      letter-spacing: .05em;
+    }
+
+    .social-row {
+      display: flex;
+      gap: .6rem;
+    }
+
+    .soc {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .35);
+      border-radius: 1px;
+      transition: all .25s;
+    }
+
+    .soc:hover {
+      background: var(--sand);
+      color: var(--ink);
+      border-color: var(--sand);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeLeft {
+      from {
+        opacity: 0;
+        transform: translateX(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-d1 {
+      transition-delay: .1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .2s;
+    }
+
+    .reveal-d3 {
+      transition-delay: .3s;
+    }
+
+    /* ── MOBILE ── */
+    @media(max-width:960px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: .9rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #who,
+      #where,
+      #contact {
+        grid-template-columns: 1fr;
+      }
+
+      .who-visual,
+      .where-map {
+        min-height: 300px;
+      }
+
+      .hero-content {
+        padding: 0 1.5rem;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .hero-accent-line,
+      .hero-accent-line-2 {
+        display: none;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapters-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5,
+      .g6 {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 180px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .who-content,
+      .contact-info,
+      .where-info,
+      .contact-form-wrap {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav id="nav">
+    <a href="index.html" class="nav-brand" style="text-decoration:none; display:flex; align-items:center; gap:0.6rem;">
+      <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 44px; width: 44px; object-fit: contain;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="who-we-are.html">Who We Are</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="chapters.html">University Chapters</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="where-we-work.html">Where We Work</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <section id="home">
+    <div class="hero-texture"></div>
+    <div class="hero-accent-line"></div>
+    <div class="hero-accent-line-2"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">North Eastern Youth Development — Kenya</span>
+      </div>
+
+      <h1 class="hero-title">
+        Empowering youth<br>
+        to
+        <div class="slide-container">
+          <div class="slide-inner">
+            <span>lead with purpose</span>
+            <span>build their future</span>
+            <span>transform communities</span>
+          </div>
+        </div>
+        <strong>across North Eastern Kenya.</strong>
+      </h1>
+
+      <p class="hero-body">NEYD Kenya is a youth-led development organisation dedicated to advancing education, civic
+        participation, and sustainable development across the North Eastern region of Kenya.</p>
+
+      <div class="hero-actions">
+        <a href="programs.html" class="btn-primary">Our Programs</a>
+        <a href="contact.html" class="btn-ghost"><span></span>Get Involved</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-row">
+        <span class="stat-num">48<span class="stat-unit">+</span></span>
+        <span class="stat-lbl">University Chapters</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">12<span class="stat-unit">K</span></span>
+        <span class="stat-lbl">Youth Reached</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">23</span>
+        <span class="stat-lbl">Active Regions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK IMPACT BANNER -->
+  <section id="quick-impact" style="background:var(--sand); padding:4rem 5rem; text-align:center;">
+    <div
+      style="display:flex; justify-content:center; gap:4rem; flex-wrap:wrap; max-width:1000px; margin:0 auto; align-items:center;">
+      <div style="flex:1; min-width:200px;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:700; color:var(--green-dk); line-height:1; margin-bottom:0.5rem;">
+          5,000+</div>
+        <div
+          style="font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-mid);">
+          Girls in Tech Trained</div>
+      </div>
+      <div style="width:1px; height:60px; background:rgba(0,0,0,0.1);"></div>
+      <div style="flex:1; min-width:200px;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:700; color:var(--green-dk); line-height:1; margin-bottom:0.5rem;">
+          80%</div>
+        <div
+          style="font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-mid);">
+          Transition to University</div>
+      </div>
+      <div style="width:1px; height:60px; background:rgba(0,0,0,0.1);"></div>
+      <div style="flex:1; min-width:200px;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:700; color:var(--green-dk); line-height:1; margin-bottom:0.5rem;">
+          $1.2M</div>
+        <div
+          style="font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-mid);">
+          Community Value Created</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME OVERVIEW -->
+  <section id="home-overview" style="background:var(--white); padding:7rem 5rem;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+      <div class="who-content" style="padding:0;">
+        <div class="s-label">Overview</div>
+        <h2 class="s-title green">A movement rooted in<br><em>North Eastern Kenya</em></h2>
+        <p class="who-body" style="max-width:700px; font-size:1.1rem;">NEYD Kenya was established to address the
+          development gap facing
+          youth in the North Eastern counties. We believe that young people are not just beneficiaries of development —
+          they are its most powerful agents.</p>
+        <p class="who-body" style="max-width:700px; margin-top:1rem; color:var(--ink-lt);">Through localized programs in
+          education, tech, and civic participation, we are building a robust ecosystem of youth leadership that drives
+          sustainable progress from Mandera to Lamu.</p>
+        <a href="who-we-are.html" class="prog-link" style="margin-top:2.5rem; display:inline-flex;">Discover Our
+          Story</a>
+      </div>
+
+      <div
+        style="position:relative; background:var(--green-dk); border-radius:4px; overflow:hidden; min-height:400px; box-shadow:0 10px 40px rgba(0,0,0,0.1);">
+        <div class="map-bg" style="opacity:0.6;"></div>
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+          <!-- Minimap SVG -->
+          <svg style="width:70%; height:100%; opacity:.15;" viewBox="0 0 400 500" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M 53.9 145.4 L 55.9 145.4 L 57.5 144.1 L 58.7 142.5 L 60.1 141.0 L 60.0 139.0 L 62.0 138.8 L 64.4 141.3 L 66.0 145.7 L 68.8 153.4 L 71.6 157.7 L 72.4 160.3 L 73.2 162.5 L 73.4 164.8 L 73.5 166.9 L 73.2 168.9 L 75.3 168.7 L 77.1 169.9 L 78.7 171.1 L 81.0 171.3 L 83.1 171.2 L 85.2 171.5 L 87.3 172.1 L 89.2 172.8 L 90.3 174.6 L 91.9 175.8 L 93.3 177.3 L 95.4 179.5 L 97.2 184.5 L 100.0 186.0 L 104.9 194.2 L 107.3 197.4 L 109.1 200.7 L 112.7 207.1 L 114.1 208.5 L 116.2 208.3 L 117.9 207.3 L 119.8 206.7 L 121.9 206.5 L 123.9 206.3 L 126.0 206.3 L 127.9 205.8 L 129.9 205.3 L 130.7 203.4 L 136.8 207.7 L 136.5 215.3 L 160.8 196.0 L 163.4 184.8 L 199.0 164.3 L 198.1 162.4 L 197.4 160.5 L 197.5 158.5 L 197.5 156.5 L 197.1 154.5 L 196.9 152.5 L 197.4 150.5 L 197.2 148.5 L 197.1 146.4 L 196.6 144.5 L 196.0 142.5 L 195.3 140.6 L 194.8 138.7 L 199.1 135.9 L 204.0 128.9 L 204.3 126.7 L 205.4 116.3 L 207.4 116.3 L 208.5 114.5 L 209.7 112.9 L 213.8 111.7 L 216.6 109.8 L 218.7 107.5 L 220.5 106.3 L 222.7 104.8 L 222.6 102.2 L 222.5 99.6 L 222.4 93.9 L 222.0 91.9 L 221.4 89.9 L 220.8 85.8 L 220.4 83.8 L 219.9 81.8 L 219.5 79.8 L 217.4 80.0 L 215.4 79.6 L 213.3 79.8 L 211.4 78.7 L 209.6 77.7 L 207.6 76.7 L 205.6 76.6 L 203.4 77.0 L 201.4 77.2 L 199.3 77.1 L 196.9 78.1 L 194.6 77.8 L 192.0 77.0 L 184.1 74.6 L 182.5 72.1 L 180.3 73.0 L 177.5 71.9 L 175.3 72.3 L 173.5 70.0 L 170.9 71.3 L 167.4 72.6 L 158.6 71.9 L 151.0 71.4 L 148.9 72.0 L 146.8 71.3 L 143.4 68.5 L 139.2 64.5 L 134.9 62.1 L 130.2 58.9 L 127.5 57.2 L 125.5 55.9 L 123.8 54.8 L 118.5 51.0 L 116.5 49.5 L 114.4 48.0 L 108.7 44.0 L 106.4 42.5 L 104.4 41.1 L 100.3 38.6 L 96.0 35.8 L 91.2 32.7 L 86.9 29.9 L 84.0 27.0 L 81.8 25.8 L 79.7 25.2 L 77.6 24.0 L 72.8 22.0 L 68.7 20.5 L 58.7 21.0 L 56.5 20.2 L 50.5 20.8 L 40.2 20.6 L 33.1 20.4 L 20.0 20.1 L 20.0 44.5 L 20.1 94.4 L 21.9 95.3 L 24.0 95.6 L 26.0 95.4 L 26.3 97.5 L 25.7 99.4 L 26.3 101.4 L 26.3 103.4 L 25.5 105.2 L 25.4 107.2 L 24.7 109.2 L 25.7 111.0 L 27.8 111.1 L 29.7 111.5 L 31.8 112.0 L 33.1 113.5 L 34.0 115.4 L 35.8 116.3 L 37.7 117.3 L 39.5 118.2 L 40.6 119.9 L 41.4 121.7 L 42.5 123.4 L 42.9 125.5 L 44.2 127.0 L 43.5 128.9 L 43.8 130.9 L 44.7 132.8 L 46.4 133.9 L 47.8 135.4 L 48.9 137.2 L 49.4 139.1 L 49.4 141.1 L 49.2 143.2 L 49.9 145.0 L 51.9 145.4 Z"
+              stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.05)" />
+          </svg>
+        </div>
+        <div
+          style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:2rem;">
+          <div
+            style="font-size:0.75rem; font-weight:600; color:var(--sand); letter-spacing:0.15em; text-transform:uppercase;">
+            Regional Reach</div>
+          <div>
+            <div
+              style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; color:var(--white); line-height:1; margin-bottom:0.5rem;">
+              6 Counties</div>
+            <a href="where-we-work.html"
+              style="font-size:0.85rem; color:var(--white); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; transition:color 0.3s;"
+              onmouseover="this.style.color='var(--sand)'" onmouseout="this.style.color='var(--white)'">Explore the Map
+              <span style="font-size:1.2rem;">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME PROGRAMS -->
+  <section id="home-programs" style="background:var(--ivory); padding:7rem 5rem;">
+    <div class="programs-header reveal" style="margin-left:0;">
+      <div class="s-label">Featured Initiatives</div>
+      <h2 class="s-title">Programmes that<br><em>create lasting change</em></h2>
+    </div>
+    <div class="programs-grid" style="margin:0;">
+      <div class="prog-card reveal reveal-d1">
+        <div class="prog-num">01</div>
+        <h3 class="prog-title">Education & Literacy</h3>
+        <p class="prog-text">Foundational literacy and numeracy initiatives delivered in partnership with primary
+          schools.</p>
+        <a href="programs.html" class="prog-link">Read more</a>
+      </div>
+      <div class="prog-card reveal reveal-d2">
+        <div class="prog-num">02</div>
+        <h3 class="prog-title">Digital Skills & Technology</h3>
+        <p class="prog-text">Technology access and digital literacy training for secondary students and young adults.
+        </p>
+        <a href="programs.html" class="prog-link">Read more</a>
+      </div>
+      <div class="prog-card reveal reveal-d3">
+        <div class="prog-num">03</div>
+        <h3 class="prog-title">Civic Leadership</h3>
+        <p class="prog-text">Equipping young people with the knowledge, skills, and confidence to engage actively in
+          governance.</p>
+        <a href="programs.html" class="prog-link">Read more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME GALLERY PREVIEW -->
+  <section id="home-gallery-preview" style="background:var(--white); padding:5rem 5rem 7rem;">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <div class="s-label" style="justify-content:center;">From the Field</div>
+      <h2 class="s-title green">Impact in <em>Action</em></h2>
+    </div>
+
+    <div
+      style="display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:10px; max-width:1100px; margin:0 auto; min-height:400px;">
+
+      <!-- Big featured image -->
+      <div
+        style="position:relative; background:url('https://images.unsplash.com/photo-1544252890-54a7c06ebf19?w=800&q=80') center/cover; border-radius:4px; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent 50%);">
+        </div>
+        <div style="position:absolute; bottom:2rem; left:2rem; color:var(--white);">
+          <div
+            style="font-size:0.7rem; font-weight:700; letter-spacing:0.15em; color:var(--sand); text-transform:uppercase; margin-bottom:0.5rem;">
+            Digital Hubs</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; line-height:1.2;">Garissa Tech Training
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div
+          style="flex:1; position:relative; background:url('https://images.unsplash.com/photo-1577902787834-31518c02f068?w=600&q=80') center/cover; border-radius:4px; overflow:hidden;">
+          <div
+            style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.6), transparent); opacity:0; transition:opacity 0.3s;"
+            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0">
+            <div
+              style="position:absolute; bottom:1rem; left:1rem; font-size:0.75rem; font-weight:600; color:var(--white); letter-spacing:0.1em; text-transform:uppercase;">
+              Mentorship</div>
+          </div>
+        </div>
+        <div
+          style="flex:1; position:relative; background:url('https://images.unsplash.com/photo-1627556592933-ffe99c1c9dd8?w=600&q=80') center/cover; border-radius:4px; overflow:hidden;">
+          <div
+            style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.6), transparent); opacity:0; transition:opacity 0.3s;"
+            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0">
+            <div
+              style="position:absolute; bottom:1rem; left:1rem; font-size:0.75rem; font-weight:600; color:var(--white); letter-spacing:0.1em; text-transform:uppercase;">
+              Community</div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="background:var(--green-dk); border-radius:4px; padding:3rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--white); margin-bottom:1.5rem; line-height:1.2;">
+          Explore our full story.</div>
+        <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-bottom:2.5rem; font-weight:300;">Browse our
+          gallery to see NEYD's impact across communities.</p>
+        <a href="gallery.html" class="btn-primary"
+          style="background:var(--sand); color:var(--ink); padding:0.8rem 2rem; font-size:0.75rem;">View Gallery</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOME CTA -->
+  <section id="home-cta" style="background:var(--green-dk); padding:7rem 5rem; text-align:center;">
+    <div class="s-label" style="justify-content:center; color:var(--sand);">Get Involved</div>
+    <h2 class="s-title light">Join the movement<br>to <em>empower youth</em></h2>
+    <a href="contact.html" class="submit-btn"
+      style="display:inline-block; margin-top:2rem; width:auto; padding:1.2rem 3.5rem; text-decoration:none;">Contact
+      Us</a>
+  </section>
+
+  <!-- FOOTER -->
+
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="fb-brand" style="display:flex; align-items:center; gap:0.8rem;">
+          <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 55px; width: 55px; object-fit: contain;">
+        </div>
+        <p class="fb-desc">North Eastern Youth Development — empowering young people to lead, build, and transform
+          communities across North Eastern Kenya.</p>
+      </div>
+      <div class="fc">
+        <h5>Organisation</h5>
+        <ul>
+          <li><a href="who-we-are.html">Who We Are</a></li>
+          <li><a href="programs.html">Our Programmes</a></li>
+          <li><a href="chapters.html">University Chapters</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="contact.html">Volunteer</a></li>
+          <li><a href="contact.html">Start a Chapter</a></li>
+          <li><a href="partners.html">Partner With Us</a></li>
+          <li><a href="contact.html">Donate</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="where-we-work.html">Where We Work</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Annual Report</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="footer-copy">© 2025 NEYD Kenya. All rights reserved. North Eastern Youth Development.</span>
+      <div class="social-row">
+        <a href="#" class="soc">X</a>
+        <a href="#" class="soc">in</a>
+        <a href="#" class="soc">Fb</a>
+        <a href="#" class="soc">Ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    const navAcr = document.getElementById('nav-acr');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+        navAcr.classList.remove('nav-acronym-light');
+      } else {
+        nav.classList.remove('scrolled');
+        navAcr.classList.add('nav-acronym-light');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => revealObs.observe(r));
+
+
+  </script>
+
+</body>
+
+</html>

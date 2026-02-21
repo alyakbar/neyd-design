@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEYD Kenya — North Eastern Youth Development</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green: #3a6b4a;
+      --green-dk: #2a4e36;
+      --green-lt: #4f8962;
+      --blue: #3a9cb8;
+      --blue-lt: #5cb8d4;
+      --sand: #d4a574;
+      --sand-lt: #e8c49a;
+      --ivory: #f7f3ee;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --ink-mid: #4a4a4a;
+      --ink-lt: #8a8a8a;
+      --rule: rgba(58, 107, 74, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ivory);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 5rem;
+      transition: all .5s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(247, 243, 238, 0.96);
+      backdrop-filter: blur(16px);
+      padding: 1rem 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-logo-inner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo-map {
+      width: 14px;
+      height: 18px;
+      background: var(--sand);
+      clip-path: polygon(30% 0%, 70% 0%, 95% 20%, 100% 50%, 80% 80%, 60% 100%, 40% 95%, 10% 70%, 0% 40%, 15% 15%);
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-acronym {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dk);
+      letter-spacing: .08em;
+    }
+
+    nav.scrolled .nav-acronym {
+      color: var(--green-dk);
+    }
+
+    .nav-acronym-light {
+      color: var(--white);
+    }
+
+    .nav-full {
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: .15rem;
+    }
+
+    nav:not(.scrolled) .nav-full {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      transition: color .25s;
+      position: relative;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--ink-mid);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--sand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    nav.scrolled .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: .6rem 1.6rem;
+      border-radius: 2px;
+      letter-spacing: .12em !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--green-dk) !important;
+    }
+
+    nav.scrolled .nav-cta:hover {
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: var(--green-dk);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(58, 107, 74, .9), rgba(42, 78, 54, .95)),
+        repeating-linear-gradient(-45deg,
+          transparent, transparent 40px,
+          rgba(255, 255, 255, .015) 40px, rgba(255, 255, 255, .015) 41px);
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      left: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(212, 165, 116, .25);
+    }
+
+    .hero-accent-line-2 {
+      position: absolute;
+      right: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(58, 156, 184, .15);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 7rem;
+      max-width: 1100px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    .eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .eyebrow-text {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 2rem;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .hero-title strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Slider */
+    .slide-container {
+      overflow: hidden;
+      height: 1.1em;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    .slide-inner {
+      display: flex;
+      flex-direction: column;
+      animation: textSlide 9s ease-in-out infinite;
+    }
+
+    .slide-inner span {
+      display: block;
+      height: 1.1em;
+      line-height: 1.1em;
+      color: var(--blue-lt);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    @keyframes textSlide {
+
+      0%,
+      25% {
+        transform: translateY(0);
+      }
+
+      33%,
+      58% {
+        transform: translateY(-1.1em);
+      }
+
+      66%,
+      91% {
+        transform: translateY(-2.2em);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      animation: fadeUp .9s .3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--sand);
+      color: var(--ink);
+      padding: .9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: all .3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--sand-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      color: rgba(255, 255, 255, .7);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      transition: color .25s;
+    }
+
+    .btn-ghost span {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+      transition: width .3s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+    }
+
+    .btn-ghost:hover span {
+      width: 40px;
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 5rem;
+      bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      animation: fadeLeft .9s .5s ease both;
+      z-index: 2;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-unit {
+      color: var(--sand);
+      font-size: 1.5rem;
+    }
+
+    .stat-lbl {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-top: .25rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 5rem;
+    }
+
+    .s-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .s-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .s-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .s-title.light {
+      color: var(--white);
+    }
+
+    .s-title.green {
+      color: var(--green-dk);
+    }
+
+    /* ── WHO WE ARE ── */
+    #who {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .who-visual {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .who-geo {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 60% 40%, rgba(58, 156, 184, .25), transparent 60%),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px);
+    }
+
+    .who-logo-display {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .who-logo-ring {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .who-logo-ring::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .15);
+    }
+
+    .who-logo-inner-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .who-map-shape {
+      width: 55px;
+      height: 72px;
+      background: var(--sand);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .who-logo-text {
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: .25em;
+      color: rgba(255, 255, 255, .5);
+      text-transform: uppercase;
+    }
+
+    .who-logo-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .who-quote {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      right: 2.5rem;
+      border-left: 2px solid var(--sand);
+      padding-left: 1.2rem;
+    }
+
+    .who-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.6;
+    }
+
+    .who-content {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .who-body {
+      color: var(--ink-mid);
+      line-height: 1.85;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .who-body+.who-body {
+      margin-top: 1rem;
+    }
+
+    .who-pillars {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .pillar {
+      background: var(--ivory);
+      padding: 1.4rem 1.6rem;
+    }
+
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .pillar h4 {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      margin-bottom: .3rem;
+    }
+
+    .pillar p {
+      font-size: .82rem;
+      color: var(--ink-lt);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── PROGRAMS ── */
+    #programs {
+      background: var(--ivory);
+    }
+
+    .programs-header {
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    .programs-body {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .prog-card {
+      background: var(--white);
+      padding: 2.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: default;
+    }
+
+    .prog-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+
+    .prog-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .prog-card:hover {
+      background: var(--ivory);
+    }
+
+    .prog-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color .3s;
+    }
+
+    .prog-card:hover .prog-num {
+      color: rgba(58, 107, 74, .15);
+    }
+
+    .prog-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      margin-bottom: .8rem;
+      line-height: 1.3;
+    }
+
+    .prog-text {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .prog-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.4rem;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      transition: gap .25s, color .25s;
+    }
+
+    .prog-link::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      transition: width .25s;
+    }
+
+    .prog-link:hover {
+      color: var(--blue);
+    }
+
+    .prog-link:hover::after {
+      width: 28px;
+    }
+
+    /* ── CHAPTERS ── */
+    #chapters {
+      background: var(--green-dk);
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 5rem;
+    }
+
+    .chapters-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(58, 156, 184, .12), transparent 60%),
+        repeating-linear-gradient(-30deg, transparent, transparent 80px, rgba(255, 255, 255, .02) 80px, rgba(255, 255, 255, .02) 81px);
+    }
+
+    .chapters-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chap-info .s-label {
+      margin-bottom: 1rem;
+    }
+
+    .chap-desc {
+      color: rgba(255, 255, 255, .5);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: .95rem;
+      margin-top: 1.2rem;
+    }
+
+    .progress-stack {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .prog-row {}
+
+    .prog-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+    }
+
+    .prog-name {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .prog-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--sand);
+    }
+
+    .prog-track {
+      height: 1px;
+      background: rgba(255, 255, 255, .1);
+      position: relative;
+    }
+
+    .prog-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--sand), var(--blue-lt));
+      transition: width 2s ease;
+    }
+
+    .prog-fill-dot {
+      position: absolute;
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .06);
+      align-content: start;
+    }
+
+    .chap-card {
+      background: rgba(255, 255, 255, .04);
+      padding: 1.8rem;
+      transition: background .3s;
+      border: 1px solid transparent;
+    }
+
+    .chap-card:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(212, 165, 116, .2);
+    }
+
+    .chap-region {
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: .6rem;
+    }
+
+    .chap-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: .5rem;
+      line-height: 1.3;
+    }
+
+    .chap-meta {
+      font-size: .78rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.6;
+    }
+
+    .chap-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .8rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 1px;
+    }
+
+    .status-visited {
+      background: rgba(212, 165, 116, .15);
+      color: var(--sand);
+      border: 1px solid rgba(212, 165, 116, .25);
+    }
+
+    .status-visited::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .status-pending {
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .35);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .status-pending::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .25);
+    }
+
+    /* ── PARTNERS ── */
+    #partners {
+      background: var(--ivory);
+      text-align: center;
+    }
+
+    .partners-top {
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .partners-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: .8rem;
+    }
+
+    .partners-sub {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .partner-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .partner-block {
+      background: var(--white);
+      padding: 1.8rem 3rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      transition: all .3s;
+      cursor: default;
+      min-width: 180px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .partner-block:hover {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    /* ── WHERE WE WORK ── */
+    #where {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .where-info {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .where-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .where-stats {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .ws-item {
+      display: flex;
+      align-items: baseline;
+      gap: .8rem;
+    }
+
+    .ws-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      line-height: 1;
+    }
+
+    .ws-txt {
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+    }
+
+    .where-map {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 60% 50%, rgba(58, 156, 184, .2), transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px),
+        repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px);
+    }
+
+    /* SVG Kenya outline simplified as pins on grid */
+    .map-canvas {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-kenya {
+      width: 260px;
+      height: 300px;
+      position: relative;
+    }
+
+    .map-outline {
+      position: absolute;
+      inset: 0;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .map-pin::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .2;
+      animation: pinPulse 2s ease-in-out infinite;
+    }
+
+    .map-pin:hover {
+      transform: scale(1.6);
+    }
+
+    .map-pin.visited {
+      background: var(--sand);
+      color: var(--sand);
+    }
+
+    .map-pin.pending {
+      background: var(--blue-lt);
+      color: var(--blue-lt);
+    }
+
+    @keyframes pinPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .2;
+      }
+
+      50% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .map-tooltip {
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      color: var(--ink);
+      padding: .35rem .7rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+
+    .map-pin:hover .map-tooltip {
+      opacity: 1;
+    }
+
+    .map-legend {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .ml-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .ml-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      background: var(--ink);
+      padding: 7rem 5rem;
+    }
+
+    .gallery-header {
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 3px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--green-dk);
+    }
+
+    .g1 {
+      grid-column: span 5;
+      grid-row: span 2;
+      min-height: 360px;
+    }
+
+    .g2 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g3 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g4 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g5 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g6 {
+      grid-column: span 7;
+      min-height: 240px;
+    }
+
+    .g-fill {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s ease;
+    }
+
+    .g-item:hover .g-fill {
+      transform: scale(1.04);
+    }
+
+    .g-bg1 {
+      background: linear-gradient(160deg, #2a4e36, #1a3328);
+    }
+
+    .g-bg2 {
+      background: linear-gradient(145deg, #1e3d50, #0d2438);
+    }
+
+    .g-bg3 {
+      background: linear-gradient(135deg, #3a4e2a, #2a3820);
+    }
+
+    .g-bg4 {
+      background: linear-gradient(120deg, #3a2a1a, #2a1a0a);
+    }
+
+    .g-bg5 {
+      background: linear-gradient(150deg, #1a2a3a, #0a1a2a);
+    }
+
+    .g-bg6 {
+      background: linear-gradient(130deg, #2a3a2a, #1a2a1a);
+    }
+
+    .g-label {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.5rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      transition: color .3s;
+    }
+
+    .g-item:hover .g-label {
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent 50%);
+      opacity: 0;
+      transition: opacity .35s;
+    }
+
+    .g-item:hover .g-overlay {
+      opacity: 1;
+    }
+
+    /* Geo shapes inside gallery items */
+    .geo-shape {
+      width: 80px;
+      height: 100px;
+      background: rgba(255, 255, 255, .06);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .geo-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .geo-line-h {
+      width: 80px;
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ivory);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .contact-info {
+      padding: 5rem;
+      background: var(--ivory);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .contact-lines {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .cl-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cl-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      min-width: 70px;
+      padding-top: 2px;
+    }
+
+    .cl-val {
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .contact-form-wrap {
+      padding: 5rem;
+      background: var(--green-dk);
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .form-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .fg {
+      margin-bottom: 1.2rem;
+    }
+
+    .fg label {
+      display: block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: .4rem;
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: .75rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--white);
+      border-radius: 1px;
+      outline: none;
+      transition: border-color .25s, background .25s;
+      appearance: none;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: rgba(212, 165, 116, .4);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .fg select option {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    .fg textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--sand);
+      color: var(--ink);
+      border: none;
+      cursor: pointer;
+      padding: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+      margin-top: .5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--sand-lt);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 4rem 5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .fb-brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1rem;
+    }
+
+    .fb-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .1em;
+    }
+
+    .fb-acr span {
+      color: var(--sand);
+    }
+
+    .fb-desc {
+      font-size: .8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .35);
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .fc h5 {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 1.2rem;
+    }
+
+    .fc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .fc ul a {
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      transition: color .25s;
+    }
+
+    .fc ul a:hover {
+      color: var(--sand);
+    }
+
+    .footer-bot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.8rem;
+    }
+
+    .footer-copy {
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .25);
+      letter-spacing: .05em;
+    }
+
+    .social-row {
+      display: flex;
+      gap: .6rem;
+    }
+
+    .soc {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .35);
+      border-radius: 1px;
+      transition: all .25s;
+    }
+
+    .soc:hover {
+      background: var(--sand);
+      color: var(--ink);
+      border-color: var(--sand);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeLeft {
+      from {
+        opacity: 0;
+        transform: translateX(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-d1 {
+      transition-delay: .1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .2s;
+    }
+
+    .reveal-d3 {
+      transition-delay: .3s;
+    }
+
+    /* ── MOBILE ── */
+    @media(max-width:960px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: .9rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #who,
+      #where,
+      #contact {
+        grid-template-columns: 1fr;
+      }
+
+      .who-visual,
+      .where-map {
+        min-height: 300px;
+      }
+
+      .hero-content {
+        padding: 0 1.5rem;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .hero-accent-line,
+      .hero-accent-line-2 {
+        display: none;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapters-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5,
+      .g6 {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 180px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .who-content,
+      .contact-info,
+      .where-info,
+      .contact-form-wrap {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav id="nav">
+    <a href="index.html" class="nav-brand" style="text-decoration:none; display:flex; align-items:center; gap:0.6rem;">
+      <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 44px; width: 44px; object-fit: contain;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="who-we-are.html">Who We Are</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="chapters.html">University Chapters</a></li>
+      <li><a href="partners.html" class="active">Partners</a></li>
+      <li><a href="where-we-work.html">Where We Work</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- PAGE HEADER -->
+  <header class="page-header"
+    style="background:var(--green-dk); padding:10rem 5rem 4rem; text-align:center; position:relative; overflow:hidden;">
+    <div class="hero-texture" style="position:absolute; inset:0; opacity:0.8;"></div>
+    <div style="position:relative; z-index:2;">
+      <h1
+        style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem, 5vw, 4rem); color:var(--white); font-weight:300; margin-bottom:1rem;">
+        Our Partners</h1>
+      <p style="color:var(--sand); font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase;">Collaborating
+        for a brighter future</p>
+    </div>
+  </header>
+
+
+
+  <section id="partners">
+    <div class="partners-top reveal">
+      <div class="s-label" style="justify-content:center;">Partners</div>
+      <h2 class="partners-title">Supported by distinguished<br><em
+          style="font-style:italic;font-family:'Cormorant Garamond',serif;">partners and institutions</em></h2>
+      <p class="partners-sub">We work with global and regional organisations who share our commitment to youth
+        empowerment and sustainable development in North Eastern Kenya.</p>
+    </div>
+    <div class="partner-row reveal">
+      <div class="partner-block">UNICEF</div>
+      <div class="partner-block">UNESCO</div>
+      <div class="partner-block">USAID</div>
+      <div class="partner-block">GIZ</div>
+      <div class="partner-block">Open Society</div>
+      <div class="partner-block">Save the Children</div>
+      <div class="partner-block">Ford Foundation</div>
+      <div class="partner-block">World Bank</div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM MAP SECION -->
+  <section id="ecosystem" style="background:var(--white); padding:7rem 5rem; text-align:center;">
+    <div class="s-label" style="justify-content:center;">Our Network</div>
+    <h2 class="s-title green" style="margin-bottom:2rem;">Global Reach &<br><em>Ecosystem Map</em></h2>
+    <p class="programs-body" style="max-width:700px; margin:0 auto 4rem; color:var(--ink-mid);">
+      Creating lasting impact requires collaboration at every level. Our ecosystem connects local grassroots leaders
+      with global resources, ensuring sustainable development across North Eastern Kenya.
+    </p>
+
+    <div
+      style="max-width:900px; margin:0 auto; position:relative; height:500px; display:flex; align-items:center; justify-content:center; background:radial-gradient(ellipse at center, rgba(58,107,74,0.05) 0%, transparent 70%);">
+
+      <!-- Central Node -->
+      <div
+        style="width:120px; height:120px; background:var(--green-dk); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; z-index:10; box-shadow:0 0 40px rgba(58,107,74,0.3); border:4px solid var(--white);">
+        <span
+          style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:var(--white);">NEYD</span>
+      </div>
+
+      <!-- Connecting SVG Lines -->
+      <svg style="position:absolute; inset:0; width:100%; height:100%; z-index:1;" preserveAspectRatio="xMidYMid meet">
+        <!-- To Local Sponsors -->
+        <line x1="450" y1="250" x2="250" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <!-- To Int NGOs -->
+        <line x1="450" y1="250" x2="650" y2="150" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <!-- To Gov Bodies -->
+        <line x1="450" y1="250" x2="250" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+        <!-- To Universities -->
+        <line x1="450" y1="250" x2="650" y2="350" stroke="var(--ink-lt)" stroke-width="1.5" stroke-dasharray="5,5" />
+
+        <!-- Orbital Paths -->
+        <circle cx="450" cy="250" r="180" fill="none" stroke="rgba(58,107,74,0.1)" stroke-width="1" />
+      </svg>
+
+      <!-- Satellite Nodes -->
+      <!-- Node 1: Local Sponsors -->
+      <div
+        style="position:absolute; top:20%; left:20%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+        onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
+        onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
+        <div
+          style="width:60px; height:60px; background:var(--white); border:2px solid var(--sand); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:1rem;">🤝</span>
+        </div>
+        <div
+          style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
+          Local Sponsors</div>
+      </div>
+
+      <!-- Node 2: Int NGOs -->
+      <div
+        style="position:absolute; top:20%; left:80%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+        onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
+        onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
+        <div
+          style="width:60px; height:60px; background:var(--white); border:2px solid var(--blue); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:1rem;">🌍</span>
+        </div>
+        <div
+          style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
+          Int'l NGOs</div>
+      </div>
+
+      <!-- Node 3: Govt Bodies -->
+      <div
+        style="position:absolute; top:80%; left:20%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+        onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
+        onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
+        <div
+          style="width:60px; height:60px; background:var(--white); border:2px solid var(--ink-mid); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:1rem;">🏛️</span>
+        </div>
+        <div
+          style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
+          Gov't Bodies</div>
+      </div>
+
+      <!-- Node 4: Universities -->
+      <div
+        style="position:absolute; top:80%; left:80%; transform:translate(-50%, -50%); width:100px; transition:transform 0.3s; z-index:5; cursor:pointer;"
+        onmouseover="this.style.transform='translate(-50%, -50%) scale(1.1)'"
+        onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
+        <div
+          style="width:60px; height:60px; background:var(--white); border:2px solid var(--green-lt); border-radius:50%; margin:0 auto 0.5rem; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:1rem;">🎓</span>
+        </div>
+        <div
+          style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink);">
+          Universities</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARTNERSHIP TIERS -->
+  <section id="partnership-tiers" style="background:var(--ivory); padding:7rem 5rem;">
+    <div class="s-label" style="justify-content:center;">Ways to Support</div>
+    <h2 class="s-title green" style="text-align:center; margin-bottom:4rem;">Our <em>Partnership</em> Tiers</h2>
+
+    <div
+      style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; max-width:1100px; margin:0 auto;">
+      <div class="reveal reveal-d1"
+        style="background:var(--ivory); padding:3rem; border:1px solid var(--rule); border-top:3px solid var(--blue-lt); border-radius:2px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--ink); margin-bottom:1rem;">
+          Programme Sponsor</div>
+        <p style="font-size:0.9rem; color:var(--ink-mid); font-weight:300; line-height:1.6; margin-bottom:2rem;">
+          Directly fund specific initiatives like our Digital Hubs or STEM camps, enabling targeted community impact.
+        </p>
+        <div
+          style="margin-top:auto; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--blue-lt);">
+          High Visibility</div>
+      </div>
+      <div class="reveal reveal-d2"
+        style="background:var(--green-dk); padding:3rem; border:1px solid var(--green-dk); border-top:3px solid var(--sand); border-radius:2px; display:flex; flex-direction:column; align-items:center; text-align:center; color:var(--white); transform:scale(1.05); z-index:1; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--white); margin-bottom:1rem;">
+          Strategic Partner</div>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); font-weight:300; line-height:1.6; margin-bottom:2rem;">
+          Commit to long-term systemic change through multi-year funding and collaborative programme design.</p>
+        <div
+          style="margin-top:auto; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--sand);">
+          Deep Integration</div>
+      </div>
+      <div class="reveal reveal-d3"
+        style="background:var(--ivory); padding:3rem; border:1px solid var(--rule); border-top:3px solid var(--green-lt); border-radius:2px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+        <div
+          style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--ink); margin-bottom:1rem;">
+          Resource Contributor</div>
+        <p style="font-size:0.9rem; color:var(--ink-mid); font-weight:300; line-height:1.6; margin-bottom:2rem;">Provide
+          vital non-financial support through technology hardware, curriculum materials, or pro-bono services.</p>
+        <div
+          style="margin-top:auto; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--green-lt);">
+          Capacity Building</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="become-partner" style="background:var(--green-dk); padding:7rem 5rem;">
+    <div class="who-content" style="padding:0; max-width:700px; margin:0 auto; text-align:center;">
+      <div class="s-label" style="justify-content:center; color:var(--sand);">Join Our Mission</div>
+      <h2 class="s-title light">Let's create<br><em>meaningful change</em> together</h2>
+      <p class="who-body" style="color:rgba(255,255,255,0.7); margin-bottom:2.5rem;">Our incredible partners supply the
+        resources, expertise, and amplify our reach. We are constantly looking for shared-value partnerships with
+        corporations, foundations, and government entities.</p>
+      <a href="contact.html" class="submit-btn"
+        style="display:inline-block; width:auto; padding:1.1rem 3.5rem; text-decoration:none;">Partner With Us</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="fb-brand" style="display:flex; align-items:center; gap:0.8rem;">
+          <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 55px; width: 55px; object-fit: contain;">
+        </div>
+        <p class="fb-desc">North Eastern Youth Development — empowering young people to lead, build, and transform
+          communities across North Eastern Kenya.</p>
+      </div>
+      <div class="fc">
+        <h5>Organisation</h5>
+        <ul>
+          <li><a href="who-we-are.html">Who We Are</a></li>
+          <li><a href="programs.html">Our Programmes</a></li>
+          <li><a href="chapters.html">University Chapters</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="contact.html">Volunteer</a></li>
+          <li><a href="contact.html">Start a Chapter</a></li>
+          <li><a href="partners.html">Partner With Us</a></li>
+          <li><a href="contact.html">Donate</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="where-we-work.html">Where We Work</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Annual Report</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="footer-copy">© 2025 NEYD Kenya. All rights reserved. North Eastern Youth Development.</span>
+      <div class="social-row">
+        <a href="#" class="soc">X</a>
+        <a href="#" class="soc">in</a>
+        <a href="#" class="soc">Fb</a>
+        <a href="#" class="soc">Ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    const navAcr = document.getElementById('nav-acr');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+        navAcr.classList.remove('nav-acronym-light');
+      } else {
+        nav.classList.remove('scrolled');
+        navAcr.classList.add('nav-acronym-light');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => revealObs.observe(r));
+
+
+  </script>
+
+</body>
+
+</html>

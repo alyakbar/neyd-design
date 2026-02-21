@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEYD Kenya — North Eastern Youth Development</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green: #3a6b4a;
+      --green-dk: #2a4e36;
+      --green-lt: #4f8962;
+      --blue: #3a9cb8;
+      --blue-lt: #5cb8d4;
+      --sand: #d4a574;
+      --sand-lt: #e8c49a;
+      --ivory: #f7f3ee;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --ink-mid: #4a4a4a;
+      --ink-lt: #8a8a8a;
+      --rule: rgba(58, 107, 74, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ivory);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 5rem;
+      transition: all .5s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(247, 243, 238, 0.96);
+      backdrop-filter: blur(16px);
+      padding: 1rem 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-logo-inner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo-map {
+      width: 14px;
+      height: 18px;
+      background: var(--sand);
+      clip-path: polygon(30% 0%, 70% 0%, 95% 20%, 100% 50%, 80% 80%, 60% 100%, 40% 95%, 10% 70%, 0% 40%, 15% 15%);
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-acronym {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dk);
+      letter-spacing: .08em;
+    }
+
+    nav.scrolled .nav-acronym {
+      color: var(--green-dk);
+    }
+
+    .nav-acronym-light {
+      color: var(--white);
+    }
+
+    .nav-full {
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: .15rem;
+    }
+
+    nav:not(.scrolled) .nav-full {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      transition: color .25s;
+      position: relative;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--ink-mid);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--sand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    nav.scrolled .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: .6rem 1.6rem;
+      border-radius: 2px;
+      letter-spacing: .12em !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--green-dk) !important;
+    }
+
+    nav.scrolled .nav-cta:hover {
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: var(--green-dk);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(58, 107, 74, .9), rgba(42, 78, 54, .95)),
+        repeating-linear-gradient(-45deg,
+          transparent, transparent 40px,
+          rgba(255, 255, 255, .015) 40px, rgba(255, 255, 255, .015) 41px);
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      left: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(212, 165, 116, .25);
+    }
+
+    .hero-accent-line-2 {
+      position: absolute;
+      right: 5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(58, 156, 184, .15);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 7rem;
+      max-width: 1100px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    .eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .eyebrow-text {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 2rem;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .hero-title strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Slider */
+    .slide-container {
+      overflow: hidden;
+      height: 1.1em;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    .slide-inner {
+      display: flex;
+      flex-direction: column;
+      animation: textSlide 9s ease-in-out infinite;
+    }
+
+    .slide-inner span {
+      display: block;
+      height: 1.1em;
+      line-height: 1.1em;
+      color: var(--blue-lt);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    @keyframes textSlide {
+
+      0%,
+      25% {
+        transform: translateY(0);
+      }
+
+      33%,
+      58% {
+        transform: translateY(-1.1em);
+      }
+
+      66%,
+      91% {
+        transform: translateY(-2.2em);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      animation: fadeUp .9s .3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--sand);
+      color: var(--ink);
+      padding: .9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: all .3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--sand-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      color: rgba(255, 255, 255, .7);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      transition: color .25s;
+    }
+
+    .btn-ghost span {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+      transition: width .3s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+    }
+
+    .btn-ghost:hover span {
+      width: 40px;
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 5rem;
+      bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      animation: fadeLeft .9s .5s ease both;
+      z-index: 2;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-unit {
+      color: var(--sand);
+      font-size: 1.5rem;
+    }
+
+    .stat-lbl {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-top: .25rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 5rem;
+    }
+
+    .s-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .s-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .s-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .s-title.light {
+      color: var(--white);
+    }
+
+    .s-title.green {
+      color: var(--green-dk);
+    }
+
+    /* ── WHO WE ARE ── */
+    #who {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .who-visual {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .who-geo {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 60% 40%, rgba(58, 156, 184, .25), transparent 60%),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, .03) 60px, rgba(255, 255, 255, .03) 61px);
+    }
+
+    .who-logo-display {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .who-logo-ring {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .who-logo-ring::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 116, .15);
+    }
+
+    .who-logo-inner-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .who-map-shape {
+      width: 55px;
+      height: 72px;
+      background: var(--sand);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .who-logo-text {
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: .25em;
+      color: rgba(255, 255, 255, .5);
+      text-transform: uppercase;
+    }
+
+    .who-logo-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .12em;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .who-quote {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      right: 2.5rem;
+      border-left: 2px solid var(--sand);
+      padding-left: 1.2rem;
+    }
+
+    .who-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.6;
+    }
+
+    .who-content {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .who-body {
+      color: var(--ink-mid);
+      line-height: 1.85;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .who-body+.who-body {
+      margin-top: 1rem;
+    }
+
+    .who-pillars {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .pillar {
+      background: var(--ivory);
+      padding: 1.4rem 1.6rem;
+    }
+
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .pillar h4 {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      margin-bottom: .3rem;
+    }
+
+    .pillar p {
+      font-size: .82rem;
+      color: var(--ink-lt);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── PROGRAMS ── */
+    #programs {
+      background: var(--ivory);
+    }
+
+    .programs-header {
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    .programs-body {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .prog-card {
+      background: var(--white);
+      padding: 2.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: default;
+    }
+
+    .prog-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+
+    .prog-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .prog-card:hover {
+      background: var(--ivory);
+    }
+
+    .prog-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color .3s;
+    }
+
+    .prog-card:hover .prog-num {
+      color: rgba(58, 107, 74, .15);
+    }
+
+    .prog-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      margin-bottom: .8rem;
+      line-height: 1.3;
+    }
+
+    .prog-text {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .prog-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.4rem;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      transition: gap .25s, color .25s;
+    }
+
+    .prog-link::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      transition: width .25s;
+    }
+
+    .prog-link:hover {
+      color: var(--blue);
+    }
+
+    .prog-link:hover::after {
+      width: 28px;
+    }
+
+    /* ── CHAPTERS ── */
+    #chapters {
+      background: var(--green-dk);
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 5rem;
+    }
+
+    .chapters-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(58, 156, 184, .12), transparent 60%),
+        repeating-linear-gradient(-30deg, transparent, transparent 80px, rgba(255, 255, 255, .02) 80px, rgba(255, 255, 255, .02) 81px);
+    }
+
+    .chapters-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chap-info .s-label {
+      margin-bottom: 1rem;
+    }
+
+    .chap-desc {
+      color: rgba(255, 255, 255, .5);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: .95rem;
+      margin-top: 1.2rem;
+    }
+
+    .progress-stack {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .prog-row {}
+
+    .prog-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+    }
+
+    .prog-name {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .prog-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--sand);
+    }
+
+    .prog-track {
+      height: 1px;
+      background: rgba(255, 255, 255, .1);
+      position: relative;
+    }
+
+    .prog-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--sand), var(--blue-lt));
+      transition: width 2s ease;
+    }
+
+    .prog-fill-dot {
+      position: absolute;
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .06);
+      align-content: start;
+    }
+
+    .chap-card {
+      background: rgba(255, 255, 255, .04);
+      padding: 1.8rem;
+      transition: background .3s;
+      border: 1px solid transparent;
+    }
+
+    .chap-card:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(212, 165, 116, .2);
+    }
+
+    .chap-region {
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: .6rem;
+    }
+
+    .chap-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: .5rem;
+      line-height: 1.3;
+    }
+
+    .chap-meta {
+      font-size: .78rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.6;
+    }
+
+    .chap-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .8rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 1px;
+    }
+
+    .status-visited {
+      background: rgba(212, 165, 116, .15);
+      color: var(--sand);
+      border: 1px solid rgba(212, 165, 116, .25);
+    }
+
+    .status-visited::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+    }
+
+    .status-pending {
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .35);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .status-pending::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .25);
+    }
+
+    /* ── PARTNERS ── */
+    #partners {
+      background: var(--ivory);
+      text-align: center;
+    }
+
+    .partners-top {
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .partners-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: .8rem;
+    }
+
+    .partners-sub {
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink-lt);
+      line-height: 1.7;
+    }
+
+    .partner-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .partner-block {
+      background: var(--white);
+      padding: 1.8rem 3rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      transition: all .3s;
+      cursor: default;
+      min-width: 180px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .partner-block:hover {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    /* ── WHERE WE WORK ── */
+    #where {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .where-info {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .where-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .where-stats {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .ws-item {
+      display: flex;
+      align-items: baseline;
+      gap: .8rem;
+    }
+
+    .ws-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--green-dk);
+      line-height: 1;
+    }
+
+    .ws-txt {
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+    }
+
+    .where-map {
+      background: var(--green-dk);
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 60% 50%, rgba(58, 156, 184, .2), transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px),
+        repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 255, 255, .03) 50px, rgba(255, 255, 255, .03) 51px);
+    }
+
+    /* SVG Kenya outline simplified as pins on grid */
+    .map-canvas {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-kenya {
+      width: 260px;
+      height: 300px;
+      position: relative;
+    }
+
+    .map-outline {
+      position: absolute;
+      inset: 0;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .map-pin::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .2;
+      animation: pinPulse 2s ease-in-out infinite;
+    }
+
+    .map-pin:hover {
+      transform: scale(1.6);
+    }
+
+    .map-pin.visited {
+      background: var(--sand);
+      color: var(--sand);
+    }
+
+    .map-pin.pending {
+      background: var(--blue-lt);
+      color: var(--blue-lt);
+    }
+
+    @keyframes pinPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .2;
+      }
+
+      50% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .map-tooltip {
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      color: var(--ink);
+      padding: .35rem .7rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+
+    .map-pin:hover .map-tooltip {
+      opacity: 1;
+    }
+
+    .map-legend {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .ml-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .ml-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      background: var(--ink);
+      padding: 7rem 5rem;
+    }
+
+    .gallery-header {
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 3px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--green-dk);
+    }
+
+    .g1 {
+      grid-column: span 5;
+      grid-row: span 2;
+      min-height: 360px;
+    }
+
+    .g2 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g3 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g4 {
+      grid-column: span 4;
+      min-height: 175px;
+    }
+
+    .g5 {
+      grid-column: span 3;
+      min-height: 175px;
+    }
+
+    .g6 {
+      grid-column: span 7;
+      min-height: 240px;
+    }
+
+    .g-fill {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s ease;
+    }
+
+    .g-item:hover .g-fill {
+      transform: scale(1.04);
+    }
+
+    .g-bg1 {
+      background: linear-gradient(160deg, #2a4e36, #1a3328);
+    }
+
+    .g-bg2 {
+      background: linear-gradient(145deg, #1e3d50, #0d2438);
+    }
+
+    .g-bg3 {
+      background: linear-gradient(135deg, #3a4e2a, #2a3820);
+    }
+
+    .g-bg4 {
+      background: linear-gradient(120deg, #3a2a1a, #2a1a0a);
+    }
+
+    .g-bg5 {
+      background: linear-gradient(150deg, #1a2a3a, #0a1a2a);
+    }
+
+    .g-bg6 {
+      background: linear-gradient(130deg, #2a3a2a, #1a2a1a);
+    }
+
+    .g-label {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.5rem;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      transition: color .3s;
+    }
+
+    .g-item:hover .g-label {
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent 50%);
+      opacity: 0;
+      transition: opacity .35s;
+    }
+
+    .g-item:hover .g-overlay {
+      opacity: 1;
+    }
+
+    /* Geo shapes inside gallery items */
+    .geo-shape {
+      width: 80px;
+      height: 100px;
+      background: rgba(255, 255, 255, .06);
+      clip-path: polygon(28% 0%, 72% 2%, 98% 18%, 100% 48%, 85% 78%, 62% 98%, 38% 96%, 12% 72%, 0% 38%, 12% 12%);
+    }
+
+    .geo-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .geo-line-h {
+      width: 80px;
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ivory);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .contact-info {
+      padding: 5rem;
+      background: var(--ivory);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-desc {
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      font-size: .95rem;
+    }
+
+    .contact-lines {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+
+    .cl-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cl-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      min-width: 70px;
+      padding-top: 2px;
+    }
+
+    .cl-val {
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .contact-form-wrap {
+      padding: 5rem;
+      background: var(--green-dk);
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .form-title em {
+      font-style: italic;
+      color: var(--sand-lt);
+    }
+
+    .fg {
+      margin-bottom: 1.2rem;
+    }
+
+    .fg label {
+      display: block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: .4rem;
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: .75rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--white);
+      border-radius: 1px;
+      outline: none;
+      transition: border-color .25s, background .25s;
+      appearance: none;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: rgba(212, 165, 116, .4);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .fg select option {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    .fg textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--sand);
+      color: var(--ink);
+      border: none;
+      cursor: pointer;
+      padding: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+      margin-top: .5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--sand-lt);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 4rem 5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .fb-brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1rem;
+    }
+
+    .fb-acr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .1em;
+    }
+
+    .fb-acr span {
+      color: var(--sand);
+    }
+
+    .fb-desc {
+      font-size: .8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .35);
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .fc h5 {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 1.2rem;
+    }
+
+    .fc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .fc ul a {
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .4);
+      transition: color .25s;
+    }
+
+    .fc ul a:hover {
+      color: var(--sand);
+    }
+
+    .footer-bot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.8rem;
+    }
+
+    .footer-copy {
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .25);
+      letter-spacing: .05em;
+    }
+
+    .social-row {
+      display: flex;
+      gap: .6rem;
+    }
+
+    .soc {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .35);
+      border-radius: 1px;
+      transition: all .25s;
+    }
+
+    .soc:hover {
+      background: var(--sand);
+      color: var(--ink);
+      border-color: var(--sand);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeLeft {
+      from {
+        opacity: 0;
+        transform: translateX(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-d1 {
+      transition-delay: .1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .2s;
+    }
+
+    .reveal-d3 {
+      transition-delay: .3s;
+    }
+
+    /* ── MOBILE ── */
+    @media(max-width:960px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: .9rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #who,
+      #where,
+      #contact {
+        grid-template-columns: 1fr;
+      }
+
+      .who-visual,
+      .where-map {
+        min-height: 300px;
+      }
+
+      .hero-content {
+        padding: 0 1.5rem;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .hero-accent-line,
+      .hero-accent-line-2 {
+        display: none;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapters-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5,
+      .g6 {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 180px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .who-content,
+      .contact-info,
+      .where-info,
+      .contact-form-wrap {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav id="nav">
+    <a href="index.html" class="nav-brand" style="text-decoration:none; display:flex; align-items:center; gap:0.6rem;">
+      <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 44px; width: 44px; object-fit: contain;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="who-we-are.html">Who We Are</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="chapters.html">University Chapters</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="where-we-work.html" class="active">Where We Work</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- PAGE HEADER -->
+  <header class="page-header"
+    style="background:var(--green-dk); padding:10rem 5rem 4rem; text-align:center; position:relative; overflow:hidden;">
+    <div class="hero-texture" style="position:absolute; inset:0; opacity:0.8;"></div>
+    <div style="position:relative; z-index:2;">
+      <h1
+        style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem, 5vw, 4rem); color:var(--white); font-weight:300; margin-bottom:1rem;">
+        Where We Work</h1>
+      <p style="color:var(--sand); font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase;">Active across
+        the region and beyond</p>
+    </div>
+  </header>
+
+
+
+  <section id="where">
+    <div class="where-info reveal">
+      <div class="s-label">Where We Work</div>
+      <h2 class="s-title green">Active across<br><em>North Eastern Kenya</em><br>and beyond</h2>
+      <p class="where-desc">Our work is concentrated in the historically underserved counties of North Eastern Kenya —
+        Mandera, Wajir, Garissa, Isiolo, and Marsabit — while our university chapters extend our reach nationally.
+      </p>
+
+      <div class="where-stats">
+        <div class="ws-item">
+          <span class="ws-num">6</span>
+          <span class="ws-txt">Primary Counties of Operation</span>
+        </div>
+        <div class="ws-item">
+          <span class="ws-num">48</span>
+          <span class="ws-txt">University Chapters Nationwide</span>
+        </div>
+        <div class="ws-item">
+          <span class="ws-num">120+</span>
+          <span class="ws-txt">Partner Schools</span>
+        </div>
+        <div class="ws-item">
+          <span class="ws-num">12,000</span>
+          <span class="ws-txt">Youth Beneficiaries to Date</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="where-map">
+      <div class="map-bg"></div>
+      <div class="map-canvas" style="display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg"
+             style="width:100%;height:100%;" preserveAspectRatio="xMidYMid meet">
+            <path d="M 53.9 145.3 L 55.9 145.3 L 57.5 144.1 L 58.7 142.4 L 60.1 141.0 L 60.0 138.9 L 62.0 138.8 L 64.4 141.3 L 66.0 145.6 L 68.8 153.3 L 71.6 157.7 L 72.4 160.2 L 73.2 162.4 L 73.4 164.7 L 73.5 166.8 L 73.2 168.8 L 75.3 168.6 L 77.1 169.8 L 78.7 171.0 L 81.0 171.2 L 83.1 171.2 L 85.2 171.4 L 87.3 172.0 L 89.2 172.7 L 90.3 174.5 L 91.9 175.7 L 93.3 177.2 L 95.4 179.4 L 97.2 184.4 L 100.0 185.9 L 104.9 194.1 L 107.3 197.3 L 109.1 200.6 L 112.7 207.0 L 114.1 208.4 L 116.2 208.2 L 117.9 207.1 L 119.8 206.6 L 121.9 206.4 L 123.9 206.2 L 126.0 206.2 L 127.9 205.7 L 129.9 205.2 L 130.7 203.3 L 136.8 207.6 L 136.5 215.1 L 160.8 195.9 L 163.4 184.7 L 199.0 164.2 L 198.1 162.3 L 197.4 160.4 L 197.5 158.4 L 197.5 156.4 L 197.1 154.4 L 196.9 152.4 L 197.4 150.4 L 197.2 148.4 L 197.1 146.4 L 196.6 144.4 L 196.0 142.5 L 195.3 140.6 L 194.8 138.6 L 199.1 135.8 L 204.0 128.8 L 204.3 126.6 L 205.4 116.2 L 207.4 116.2 L 208.5 114.4 L 209.7 112.9 L 213.8 111.7 L 216.6 109.7 L 218.7 107.4 L 220.5 106.2 L 222.7 104.8 L 222.6 102.1 L 222.5 99.5 L 222.4 93.9 L 222.0 91.9 L 221.4 89.8 L 220.8 85.7 L 220.4 83.8 L 219.9 81.8 L 219.5 79.7 L 217.4 80.0 L 215.4 79.5 L 213.3 79.7 L 211.4 78.6 L 209.6 77.7 L 207.6 76.7 L 205.6 76.6 L 203.4 76.9 L 201.4 77.2 L 199.3 77.0 L 196.9 78.0 L 194.6 77.8 L 192.0 76.9 L 184.1 74.6 L 182.5 72.1 L 180.3 72.9 L 177.5 71.9 L 175.3 72.3 L 173.5 70.0 L 170.9 71.3 L 167.4 72.5 L 158.6 71.9 L 151.0 71.4 L 148.9 71.9 L 146.8 71.3 L 143.4 68.4 L 139.2 64.5 L 134.9 62.1 L 130.2 58.9 L 127.5 57.1 L 125.5 55.9 L 123.8 54.7 L 118.5 51.0 L 116.5 49.5 L 114.4 48.0 L 108.7 44.0 L 106.4 42.4 L 104.4 41.0 L 100.3 38.6 L 96.0 35.8 L 91.2 32.7 L 86.9 29.9 L 84.0 27.0 L 81.8 25.8 L 79.7 25.2 L 77.6 24.0 L 72.8 22.0 L 68.7 20.5 L 58.7 21.0 L 56.5 20.2 L 50.5 20.8 L 40.2 20.6 L 33.1 20.4 L 20.0 20.1 L 20.0 44.5 L 20.1 94.3 L 21.9 95.2 L 24.0 95.5 L 26.0 95.4 L 26.3 97.4 L 25.7 99.4 L 26.3 101.3 L 26.3 103.3 L 25.5 105.2 L 25.4 107.2 L 24.7 109.2 L 25.7 110.9 L 27.8 111.1 L 29.7 111.5 L 31.8 111.9 L 33.1 113.5 L 34.0 115.4 L 35.8 116.3 L 37.7 117.2 L 39.5 118.2 L 40.6 119.8 L 41.4 121.7 L 42.5 123.4 L 42.9 125.4 L 44.2 126.9 L 43.5 128.8 L 43.8 130.9 L 44.7 132.7 L 46.4 133.9 L 47.8 135.4 L 48.9 137.1 L 49.4 139.1 L 49.4 141.1 L 49.2 143.2 L 49.9 145.1 L 51.9 145.4 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 323.8 159.2 L 323.8 154.7 L 323.8 138.2 L 323.8 121.5 L 335.7 108.2 L 344.5 99.6 L 356.6 82.5 L 363.9 72.3 L 373.4 58.7 L 379.1 50.9 L 377.1 50.3 L 375.2 50.8 L 373.3 50.1 L 371.4 49.4 L 369.5 48.8 L 367.5 48.8 L 366.0 50.2 L 364.0 49.6 L 361.9 49.5 L 359.8 49.6 L 357.9 48.9 L 356.4 50.2 L 354.4 50.2 L 352.2 50.6 L 350.1 51.0 L 348.0 50.4 L 346.0 50.8 L 344.0 51.3 L 342.0 51.1 L 339.9 50.8 L 337.8 50.7 L 335.9 51.6 L 334.1 50.7 L 332.3 49.9 L 330.7 48.6 L 329.5 46.9 L 328.3 45.2 L 327.0 43.6 L 325.3 42.5 L 324.0 41.0 L 322.2 39.8 L 320.5 38.8 L 318.5 38.2 L 317.6 36.4 L 316.8 34.4 L 315.1 33.2 L 313.3 32.3 L 311.4 31.4 L 309.4 30.7 L 307.5 32.6 L 305.4 33.2 L 303.2 34.1 L 299.7 35.5 L 297.4 36.4 L 293.5 38.0 L 291.2 39.0 L 289.2 39.8 L 287.1 41.0 L 283.5 42.1 L 281.5 42.9 L 278.9 44.0 L 276.4 45.0 L 274.1 46.0 L 272.4 47.1 L 270.2 47.9 L 260.4 53.1 L 254.7 56.0 L 249.0 68.2 L 249.7 88.7 L 265.0 95.0 L 266.8 96.8 L 271.4 101.7 L 274.1 104.6 L 279.4 110.8 L 293.0 117.1 L 293.3 119.1 L 293.2 121.1 L 294.5 122.6 L 294.8 124.6 L 293.7 126.3 L 294.9 127.9 L 295.6 129.8 L 296.4 131.7 L 296.8 133.7 L 297.6 135.5 L 298.5 137.4 L 299.2 139.2 L 300.2 141.0 L 301.5 142.6 L 303.2 143.7 L 303.8 145.6 L 304.7 147.4 L 306.2 148.7 L 307.4 150.4 L 309.4 150.9 L 311.2 151.9 L 312.8 153.1 L 314.6 154.0 L 316.0 155.4 L 317.3 157.0 L 319.0 158.3 L 320.8 159.3 L 322.8 159.2 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 199.0 164.2 L 200.3 165.7 L 200.9 167.6 L 201.1 169.6 L 202.4 171.2 L 203.8 172.8 L 205.1 174.4 L 206.4 176.1 L 208.1 177.4 L 209.7 178.9 L 210.5 180.8 L 211.5 182.5 L 212.3 184.3 L 213.1 186.2 L 214.1 188.0 L 215.9 189.1 L 217.7 190.1 L 219.5 191.0 L 221.2 192.1 L 222.8 193.5 L 224.1 195.2 L 225.4 196.7 L 227.1 197.8 L 228.8 199.0 L 223.4 200.8 L 218.2 202.6 L 222.4 213.5 L 225.8 222.3 L 229.7 231.2 L 231.0 232.7 L 231.8 234.6 L 232.6 236.5 L 233.4 238.3 L 234.2 240.2 L 234.8 242.1 L 235.3 244.1 L 236.0 246.0 L 237.1 247.7 L 238.3 249.4 L 239.7 250.9 L 241.1 252.3 L 241.9 254.2 L 243.0 255.8 L 244.3 257.4 L 245.6 258.9 L 247.0 260.4 L 248.7 261.5 L 250.3 262.7 L 252.3 263.0 L 254.2 263.7 L 256.2 264.1 L 258.2 265.1 L 259.8 266.3 L 261.5 267.3 L 263.5 267.9 L 265.6 268.1 L 267.5 269.0 L 269.1 270.2 L 270.7 271.4 L 272.6 272.3 L 274.1 273.7 L 275.4 275.3 L 276.9 276.6 L 278.6 277.7 L 280.5 278.5 L 282.3 279.5 L 284.2 280.1 L 286.2 280.4 L 288.2 280.9 L 290.3 280.9 L 292.3 280.8 L 294.3 280.0 L 295.7 278.4 L 297.6 279.1 L 299.5 278.5 L 301.5 278.1 L 303.5 277.5 L 304.8 276.0 L 306.0 274.4 L 307.1 272.6 L 308.8 271.5 L 310.6 270.6 L 312.6 270.1 L 314.7 269.6 L 316.5 268.8 L 318.1 267.5 L 319.7 266.1 L 321.5 265.2 L 323.3 264.3 L 323.8 255.4 L 323.8 239.9 L 323.8 234.2 L 323.8 230.1 L 323.8 220.8 L 323.8 204.2 L 323.8 187.8 L 323.7 173.3 L 323.8 159.2 L 321.6 159.3 L 319.7 158.7 L 317.9 157.5 L 316.4 156.1 L 315.1 154.6 L 313.6 153.2 L 311.7 152.4 L 310.2 151.2 L 308.2 150.9 L 306.8 149.4 L 305.5 147.9 L 304.1 146.4 L 303.7 144.4 L 302.2 143.1 L 300.6 141.8 L 299.8 140.0 L 298.9 138.2 L 298.4 136.2 L 297.3 134.6 L 296.7 132.6 L 295.9 130.8 L 295.2 128.9 L 294.3 127.1 L 294.4 125.0 L 294.8 123.1 L 293.5 121.5 L 293.3 119.5 L 293.1 117.5 L 279.4 110.8 L 274.1 104.6 L 271.4 101.7 L 266.8 96.8 L 265.0 95.0 L 249.7 88.7 L 249.0 68.2 L 238.8 78.4 L 235.5 80.5 L 233.2 80.4 L 231.2 80.9 L 228.9 81.0 L 226.8 80.5 L 224.7 80.5 L 222.7 80.5 L 220.6 80.5 L 219.8 82.3 L 220.6 84.2 L 221.2 88.9 L 221.5 91.1 L 222.3 93.0 L 222.5 99.5 L 222.6 102.1 L 222.7 104.8 L 220.5 106.2 L 218.7 107.4 L 216.7 109.3 L 213.8 111.7 L 210.8 111.8 L 209.1 113.0 L 208.3 115.2 L 206.5 116.2 L 205.4 125.1 L 204.3 126.9 L 200.2 135.2 L 194.5 137.0 L 194.9 139.0 L 195.4 141.0 L 196.1 142.9 L 196.8 144.7 L 197.1 146.7 L 197.2 148.7 L 197.4 150.8 L 196.8 152.7 L 197.2 154.7 L 197.5 156.8 L 197.5 158.8 L 197.6 160.8 L 198.3 162.7 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 136.5 215.1 L 136.7 219.3 L 141.8 226.0 L 142.8 243.1 L 144.9 244.6 L 142.8 244.4 L 140.8 243.6 L 139.2 244.8 L 137.7 246.4 L 136.0 247.7 L 133.9 248.3 L 132.3 246.8 L 130.4 248.8 L 129.6 250.8 L 127.4 251.1 L 125.4 251.2 L 123.2 251.9 L 121.0 251.7 L 119.6 253.3 L 117.9 254.3 L 116.4 255.6 L 114.5 256.3 L 112.7 257.4 L 110.7 257.5 L 108.7 257.1 L 106.7 256.5 L 104.7 256.7 L 102.7 257.0 L 100.8 256.4 L 100.1 254.5 L 99.1 252.7 L 98.1 250.9 L 97.1 249.2 L 96.2 247.4 L 94.7 246.0 L 92.7 246.4 L 90.7 246.7 L 88.7 246.9 L 87.0 245.9 L 85.6 244.4 L 83.5 244.6 L 81.5 245.4 L 79.6 246.1 L 77.6 246.7 L 75.6 246.8 L 73.9 248.0 L 73.8 250.0 L 73.1 251.9 L 72.2 253.7 L 71.0 255.3 L 70.2 257.2 L 82.8 259.0 L 91.5 259.9 L 94.3 260.2 L 101.1 261.0 L 100.5 263.0 L 99.8 264.8 L 100.1 266.9 L 101.2 268.6 L 101.9 270.4 L 102.5 272.4 L 102.7 274.4 L 104.7 274.1 L 106.9 275.0 L 111.4 276.2 L 112.2 274.3 L 112.6 272.3 L 114.8 271.5 L 115.2 267.8 L 114.1 266.1 L 114.2 264.0 L 129.2 258.0 L 143.6 251.5 L 145.7 257.9 L 150.7 272.1 L 152.0 278.3 L 153.8 279.1 L 155.5 280.1 L 157.0 281.5 L 158.4 283.0 L 158.7 285.0 L 160.1 286.3 L 160.8 288.3 L 161.9 290.0 L 162.7 291.8 L 164.3 293.0 L 165.0 294.9 L 166.0 296.7 L 167.9 297.5 L 169.7 296.6 L 171.7 296.1 L 173.2 294.7 L 174.7 293.3 L 176.5 294.2 L 178.4 294.7 L 180.5 295.1 L 182.5 294.8 L 184.1 296.0 L 186.0 296.6 L 186.3 294.6 L 185.6 292.7 L 185.2 290.7 L 184.9 288.7 L 184.9 286.7 L 184.9 284.6 L 186.0 282.3 L 186.2 280.3 L 185.7 278.3 L 185.2 276.3 L 184.7 274.3 L 184.1 272.2 L 183.6 270.2 L 183.1 268.2 L 182.6 266.2 L 182.0 264.1 L 181.5 262.1 L 183.3 261.3 L 185.2 260.6 L 187.3 260.8 L 188.7 259.3 L 190.0 257.8 L 191.5 256.4 L 193.4 255.6 L 195.4 255.9 L 197.1 254.8 L 199.0 254.2 L 201.0 254.1 L 202.7 253.0 L 203.8 251.3 L 205.8 250.9 L 207.7 250.2 L 209.7 250.1 L 211.2 248.8 L 212.2 246.9 L 213.1 245.1 L 214.2 243.3 L 215.4 241.7 L 216.5 240.0 L 218.0 238.5 L 219.6 236.8 L 221.4 235.3 L 223.1 234.2 L 225.1 233.3 L 227.1 232.6 L 229.1 231.9 L 225.8 222.3 L 222.4 213.5 L 218.2 202.6 L 221.5 201.5 L 228.8 199.0 L 227.2 197.8 L 225.5 196.7 L 224.1 195.2 L 223.0 193.5 L 221.2 192.2 L 219.5 191.0 L 217.7 190.1 L 215.9 189.1 L 214.1 188.0 L 213.1 186.2 L 212.3 184.3 L 211.5 182.5 L 210.5 180.8 L 209.7 178.9 L 208.2 177.5 L 206.5 176.3 L 205.3 174.6 L 204.0 173.0 L 202.6 171.5 L 201.4 169.9 L 200.8 167.9 L 200.5 165.9 L 199.2 164.3 L 163.4 184.7 L 160.8 195.9 L 136.5 215.1 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 229.7 231.5 L 227.6 232.4 L 225.6 233.1 L 223.5 234.0 L 221.8 235.1 L 220.0 236.4 L 218.6 237.8 L 216.8 239.6 L 215.6 241.3 L 214.5 243.1 L 213.2 244.6 L 212.3 246.5 L 211.6 248.4 L 210.1 249.7 L 208.1 250.1 L 206.2 250.9 L 204.2 250.9 L 202.7 252.2 L 202.0 254.1 L 200.0 254.3 L 198.0 254.0 L 196.5 255.4 L 194.6 256.0 L 192.6 255.8 L 190.9 256.8 L 189.6 258.3 L 188.3 259.9 L 186.6 260.9 L 184.7 260.4 L 182.9 261.3 L 180.9 261.2 L 181.6 263.1 L 182.3 265.1 L 182.8 267.1 L 183.3 269.1 L 183.8 271.1 L 184.4 273.2 L 184.9 275.1 L 185.5 277.3 L 186.0 279.2 L 186.4 281.3 L 185.2 283.1 L 184.9 285.2 L 184.7 287.2 L 184.8 289.3 L 185.4 291.3 L 185.9 293.3 L 186.4 295.2 L 187.7 296.8 L 189.6 297.4 L 191.6 298.0 L 193.7 298.1 L 195.7 297.9 L 197.7 298.3 L 199.4 297.1 L 200.9 295.7 L 202.8 294.9 L 204.8 295.3 L 206.4 296.6 L 207.6 298.2 L 209.0 299.7 L 211.0 300.0 L 212.9 300.7 L 214.9 300.3 L 216.8 300.8 L 218.9 300.9 L 220.9 300.8 L 222.1 302.5 L 224.1 302.8 L 225.8 303.8 L 227.8 304.1 L 229.4 305.4 L 230.7 307.0 L 232.3 308.3 L 232.8 310.3 L 234.9 310.2 L 235.8 312.0 L 237.5 313.1 L 237.8 315.1 L 238.5 317.1 L 238.9 319.1 L 240.1 320.7 L 240.7 322.6 L 241.9 324.3 L 242.7 326.2 L 243.9 327.9 L 245.8 328.6 L 247.8 329.0 L 248.6 330.9 L 249.4 332.8 L 250.4 334.5 L 251.3 336.3 L 251.6 338.3 L 252.0 340.4 L 253.1 342.1 L 253.1 344.2 L 254.2 345.9 L 254.2 347.9 L 255.3 349.6 L 256.0 351.5 L 255.9 353.6 L 257.0 355.4 L 257.5 357.4 L 258.5 359.8 L 259.4 361.6 L 260.5 363.3 L 261.5 365.1 L 262.8 366.6 L 263.1 368.7 L 262.9 370.7 L 263.1 372.8 L 263.0 374.8 L 263.6 376.8 L 264.3 378.8 L 264.9 380.8 L 265.1 382.8 L 267.2 382.1 L 268.7 383.5 L 269.4 385.4 L 270.0 387.4 L 271.3 388.9 L 272.3 390.7 L 272.7 392.7 L 272.5 394.8 L 273.0 397.0 L 272.8 399.2 L 272.6 401.2 L 272.8 403.2 L 273.8 405.1 L 274.4 406.9 L 274.4 409.1 L 274.4 411.1 L 274.9 413.1 L 275.4 415.4 L 318.3 397.0 L 358.8 393.6 L 358.9 389.9 L 323.8 342.9 L 323.7 292.4 L 323.7 289.4 L 323.8 280.3 L 323.8 271.3 L 323.8 263.9 L 322.0 264.9 L 320.3 265.9 L 318.5 267.1 L 317.0 268.5 L 315.2 269.4 L 313.2 269.9 L 311.3 270.4 L 309.4 271.1 L 307.9 272.5 L 306.3 273.7 L 305.3 275.5 L 304.0 277.1 L 302.2 278.1 L 300.2 278.4 L 298.3 279.1 L 296.3 278.5 L 294.5 279.5 L 292.8 280.6 L 290.7 280.9 L 288.7 280.7 L 286.7 280.7 L 284.4 280.1 L 282.4 279.6 L 280.6 278.6 L 278.7 277.8 L 277.0 276.7 L 275.5 275.3 L 274.1 273.8 L 272.7 272.3 L 270.8 271.4 L 269.2 270.2 L 267.6 269.0 L 265.8 268.1 L 263.7 267.9 L 261.7 267.3 L 259.9 266.4 L 258.3 265.2 L 256.7 264.1 L 254.6 263.9 L 252.9 263.0 L 250.8 262.8 L 249.0 262.0 L 247.4 260.7 L 246.0 259.3 L 244.6 257.8 L 243.3 256.3 L 242.2 254.6 L 241.3 252.8 L 239.9 251.3 L 238.6 249.8 L 237.4 248.2 L 236.3 246.5 L 235.5 244.6 L 234.9 242.7 L 234.3 240.7 L 233.6 238.8 L 232.8 236.9 L 231.9 235.1 L 231.3 233.1 L 229.8 231.7 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 102.1 275.5 L 100.5 276.8 L 100.3 278.8 L 98.9 280.5 L 97.0 281.8 L 95.7 283.5 L 94.5 285.4 L 92.8 287.2 L 91.0 288.1 L 89.1 288.8 L 87.2 289.6 L 85.2 289.9 L 84.7 291.8 L 85.8 293.6 L 97.3 301.5 L 110.8 303.4 L 114.7 303.5 L 116.5 304.5 L 118.3 305.3 L 120.3 305.0 L 122.3 304.7 L 124.1 303.8 L 125.3 302.2 L 127.3 302.1 L 131.1 299.7 L 131.4 296.5 L 130.6 294.1 L 132.2 293.0 L 133.7 291.7 L 135.7 291.8 L 136.9 290.2 L 137.4 288.2 L 139.4 288.1 L 141.2 289.1 L 142.5 290.6 L 144.5 290.3 L 146.1 289.3 L 148.1 289.2 L 149.7 290.5 L 151.6 291.2 L 153.6 291.5 L 154.6 293.2 L 156.6 293.3 L 158.2 294.6 L 159.7 295.9 L 161.7 296.4 L 163.4 297.5 L 165.2 296.7 L 164.9 294.7 L 164.1 292.9 L 162.6 291.5 L 161.7 289.7 L 160.7 288.0 L 159.7 286.2 L 158.7 284.5 L 158.2 282.5 L 156.6 281.3 L 155.2 279.9 L 153.4 279.0 L 151.9 272.6 L 145.7 257.9 L 143.7 251.6 L 129.2 258.0 L 114.5 262.9 L 114.2 264.9 L 114.2 267.0 L 115.5 270.3 L 114.1 272.3 L 112.2 272.9 L 112.1 274.9 L 106.9 275.0 L 104.7 274.1 L 102.1 275.5 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 166.6 296.9 L 190.9 338.7 L 198.5 355.3 L 198.7 358.1 L 201.3 394.7 L 199.7 395.9 L 202.3 409.2 L 188.8 435.2 L 187.0 436.2 L 185.1 436.9 L 183.8 438.4 L 182.1 439.5 L 180.2 439.9 L 206.0 478.1 L 207.9 477.4 L 209.8 478.1 L 211.3 479.4 L 213.3 479.3 L 256.0 433.4 L 273.6 458.0 L 274.0 456.1 L 274.7 458.0 L 276.5 456.7 L 277.8 455.2 L 279.0 453.6 L 280.5 452.1 L 282.2 451.1 L 280.6 452.3 L 279.2 453.7 L 280.8 452.5 L 282.5 451.3 L 284.3 450.2 L 286.1 449.3 L 287.9 448.5 L 289.8 447.7 L 291.7 447.1 L 293.7 446.8 L 291.7 446.9 L 291.5 444.9 L 293.5 445.2 L 295.0 446.6 L 296.9 447.3 L 298.7 448.2 L 300.8 448.1 L 302.5 446.9 L 303.8 445.3 L 305.3 443.9 L 307.1 442.7 L 303.6 443.0 L 292.6 439.6 L 289.9 438.7 L 278.2 438.8 L 278.2 429.7 L 276.3 420.0 L 275.6 416.5 L 274.9 414.5 L 274.4 412.3 L 274.5 410.3 L 274.3 408.2 L 274.3 406.1 L 273.1 404.3 L 272.8 402.2 L 272.5 400.1 L 273.2 398.2 L 272.6 396.2 L 272.6 394.1 L 272.6 392.1 L 272.1 390.1 L 270.9 388.5 L 269.8 386.8 L 269.3 384.7 L 268.4 382.9 L 265.2 383.4 L 265.0 381.3 L 264.7 379.3 L 264.0 377.4 L 263.4 375.5 L 263.5 373.5 L 262.7 371.7 L 263.2 369.8 L 262.6 367.8 L 262.3 365.8 L 260.9 364.2 L 260.2 362.3 L 258.7 360.1 L 258.3 358.1 L 257.2 356.4 L 256.5 354.4 L 255.9 352.5 L 255.6 350.5 L 254.3 348.9 L 253.7 347.0 L 254.0 345.0 L 253.2 343.0 L 252.1 341.3 L 251.2 339.5 L 252.0 337.7 L 251.3 335.8 L 250.3 334.0 L 249.4 332.2 L 249.0 330.2 L 247.3 329.1 L 245.3 328.4 L 243.5 327.4 L 242.5 325.7 L 241.4 324.0 L 240.2 322.3 L 240.4 320.3 L 238.9 319.0 L 238.5 317.0 L 237.9 315.0 L 237.4 313.1 L 235.8 312.0 L 234.8 310.2 L 232.8 310.5 L 232.4 308.5 L 230.9 307.1 L 229.5 305.5 L 228.0 304.3 L 226.0 304.2 L 224.3 303.1 L 222.3 302.5 L 221.0 300.9 L 219.0 300.8 L 216.9 300.8 L 215.0 300.3 L 213.1 300.9 L 211.2 300.1 L 209.2 299.6 L 207.6 298.3 L 206.4 296.7 L 205.1 295.1 L 203.0 295.0 L 201.0 295.4 L 199.4 296.7 L 197.9 298.2 L 195.9 297.8 L 193.8 298.1 L 191.7 298.0 L 189.7 297.4 L 187.7 296.8 L 185.7 296.5 L 183.7 295.9 L 181.7 295.6 L 179.7 295.5 L 178.0 294.4 L 176.1 293.8 L 174.1 293.3 L 172.8 294.8 L 171.2 295.9 L 169.4 296.9 L 167.3 297.1 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 165.7 296.5 L 163.8 297.1 L 161.9 296.5 L 159.9 296.1 L 158.0 296.7 L 156.4 297.9 L 154.4 297.9 L 153.0 299.4 L 151.9 301.1 L 151.2 303.0 L 150.5 304.9 L 149.7 306.8 L 148.1 308.0 L 146.4 309.1 L 144.4 309.0 L 142.4 309.1 L 140.5 308.6 L 139.2 310.1 L 139.0 312.1 L 138.4 314.0 L 138.0 316.0 L 137.3 317.9 L 135.8 319.1 L 134.6 320.8 L 133.8 322.6 L 132.8 324.4 L 133.0 326.4 L 133.4 328.4 L 134.7 330.0 L 133.5 331.6 L 133.4 333.6 L 133.7 335.6 L 134.5 337.5 L 133.2 339.0 L 132.5 340.9 L 130.7 341.7 L 130.2 343.7 L 129.3 345.5 L 129.5 347.5 L 130.7 349.1 L 130.4 351.1 L 130.5 353.1 L 130.4 355.2 L 129.7 357.1 L 128.4 358.6 L 127.6 360.5 L 123.8 358.1 L 114.9 358.6 L 115.1 362.4 L 117.1 362.9 L 118.0 364.7 L 119.1 366.5 L 120.6 367.9 L 121.2 369.8 L 122.3 371.5 L 123.1 373.3 L 124.2 375.0 L 126.1 375.6 L 127.4 377.2 L 128.2 379.1 L 127.5 381.1 L 126.2 382.7 L 124.3 383.4 L 122.3 383.3 L 122.7 385.3 L 123.9 387.0 L 125.1 388.6 L 126.4 390.2 L 127.4 392.0 L 128.4 393.8 L 129.6 395.5 L 130.3 397.4 L 130.9 399.4 L 130.1 401.2 L 131.2 402.9 L 132.7 404.3 L 133.7 406.1 L 134.1 408.1 L 134.3 410.1 L 134.7 412.0 L 135.5 413.9 L 136.3 415.8 L 136.9 417.7 L 137.2 419.7 L 137.0 421.7 L 137.5 423.6 L 139.5 423.9 L 141.5 424.3 L 143.0 425.7 L 144.0 427.4 L 144.2 429.4 L 145.4 431.0 L 146.5 432.7 L 148.1 434.0 L 149.9 434.8 L 151.8 435.6 L 153.1 437.2 L 154.1 438.9 L 155.7 440.1 L 157.0 441.7 L 157.5 443.7 L 158.9 445.0 L 159.5 447.0 L 160.2 448.9 L 161.2 450.6 L 162.0 452.6 L 162.7 454.4 L 163.7 456.2 L 164.4 458.1 L 165.2 459.9 L 166.0 461.8 L 165.7 463.8 L 166.4 465.7 L 167.2 467.5 L 168.2 469.2 L 169.0 471.1 L 170.1 472.8 L 171.7 474.0 L 173.7 474.4 L 175.7 474.7 L 177.3 475.9 L 179.3 476.3 L 180.7 477.7 L 182.7 477.8 L 184.7 477.9 L 186.6 478.3 L 188.7 478.6 L 190.5 479.5 L 192.5 479.2 L 194.3 478.2 L 196.3 478.3 L 198.3 477.9 L 200.3 477.8 L 202.2 477.1 L 204.1 477.5 L 178.4 439.5 L 180.5 439.9 L 182.5 439.4 L 184.0 438.2 L 185.4 436.7 L 187.3 436.0 L 202.3 409.2 L 198.8 396.3 L 200.6 395.5 L 198.7 358.1 L 198.5 355.3 L 190.9 338.7 L 166.6 296.9 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 97.3 301.5 L 103.9 316.4 L 104.4 318.3 L 104.6 320.3 L 104.6 322.3 L 105.3 324.2 L 106.3 325.9 L 107.7 327.4 L 108.1 329.4 L 107.8 331.4 L 107.7 333.4 L 107.7 335.4 L 106.8 337.2 L 104.3 337.9 L 102.3 338.3 L 100.5 339.3 L 98.4 338.9 L 96.3 338.4 L 94.8 339.8 L 96.5 340.8 L 97.6 342.5 L 99.0 344.0 L 101.0 344.1 L 103.0 344.6 L 104.9 345.0 L 106.8 345.7 L 108.2 347.2 L 110.2 347.3 L 111.9 346.3 L 113.8 345.7 L 115.6 344.7 L 117.1 343.4 L 119.1 343.9 L 120.3 342.3 L 121.2 340.5 L 123.1 339.8 L 124.5 341.2 L 126.1 342.4 L 127.8 341.3 L 129.7 341.9 L 131.7 341.6 L 132.8 339.9 L 134.0 338.3 L 134.6 336.4 L 133.9 334.5 L 133.3 332.5 L 134.6 330.9 L 133.8 329.0 L 132.8 327.2 L 132.7 325.2 L 133.3 323.3 L 134.2 321.6 L 135.3 319.9 L 135.0 317.9 L 133.6 316.4 L 133.1 314.5 L 131.5 315.7 L 130.0 317.0 L 128.5 318.4 L 126.8 319.5 L 124.8 319.6 L 122.8 319.7 L 121.0 318.9 L 119.2 318.0 L 117.7 316.7 L 115.9 315.7 L 114.1 314.9 L 97.3 301.5 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 130.4 341.8 L 128.4 341.7 L 126.5 342.5 L 124.7 341.6 L 124.0 339.7 L 122.0 339.9 L 120.3 341.1 L 119.7 343.0 L 117.9 343.8 L 115.9 344.4 L 114.5 345.8 L 112.5 346.0 L 111.4 347.6 L 109.4 347.1 L 107.5 346.5 L 105.8 345.4 L 103.9 344.9 L 101.9 344.5 L 100.0 343.9 L 98.1 343.3 L 97.1 341.5 L 95.6 340.2 L 94.2 343.5 L 92.2 344.3 L 94.7 345.9 L 97.9 348.4 L 98.6 350.2 L 100.9 351.1 L 99.1 352.0 L 101.9 353.3 L 104.2 355.5 L 102.3 356.9 L 100.7 359.2 L 98.6 359.7 L 97.2 358.3 L 95.3 357.4 L 93.5 358.3 L 91.5 358.2 L 90.0 359.6 L 89.7 361.6 L 89.6 363.6 L 88.3 365.2 L 87.7 367.1 L 85.8 367.7 L 84.7 369.4 L 83.2 370.7 L 79.9 371.2 L 76.7 371.1 L 74.7 373.7 L 72.5 375.7 L 73.6 377.4 L 75.0 378.9 L 71.5 378.8 L 70.8 382.7 L 72.7 382.0 L 74.5 381.2 L 76.9 382.5 L 76.4 384.5 L 75.8 386.4 L 77.4 387.8 L 78.8 389.7 L 80.6 392.1 L 83.4 395.8 L 85.1 398.1 L 87.1 398.4 L 88.0 400.2 L 90.5 400.8 L 92.3 399.8 L 94.6 399.7 L 96.6 399.3 L 96.0 397.3 L 97.9 396.5 L 99.9 396.4 L 101.9 396.2 L 103.7 395.5 L 102.8 393.7 L 101.9 391.9 L 101.1 390.0 L 99.7 388.4 L 100.8 386.0 L 102.7 385.3 L 104.7 385.9 L 106.6 385.2 L 108.6 385.1 L 110.3 386.0 L 112.4 386.3 L 113.6 387.9 L 115.6 387.6 L 117.0 389.1 L 118.0 390.9 L 118.9 392.6 L 120.4 391.2 L 120.3 389.2 L 122.1 390.2 L 123.5 388.7 L 123.6 386.7 L 122.5 385.0 L 124.0 383.5 L 126.0 383.0 L 127.3 381.4 L 128.3 379.6 L 127.8 377.7 L 126.6 376.1 L 124.8 375.2 L 123.3 373.8 L 122.5 371.9 L 121.6 370.1 L 120.6 368.4 L 119.3 366.8 L 118.2 365.1 L 117.4 363.3 L 115.7 362.2 L 114.9 358.6 L 123.8 358.1 L 127.4 361.1 L 128.0 359.2 L 129.3 357.7 L 130.4 356.0 L 130.6 353.8 L 131.4 352.0 L 130.7 350.1 L 130.0 348.2 L 129.0 346.5 L 129.6 344.6 L 130.4 342.8 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+            <path d="M 124.7 388.0 L 123.5 389.7 L 121.6 389.2 L 120.5 390.8 L 119.4 392.5 L 118.1 391.1 L 117.2 389.3 L 115.7 387.9 L 113.7 387.9 L 112.4 386.3 L 110.4 386.2 L 108.7 385.1 L 106.7 385.2 L 104.8 385.9 L 102.8 385.3 L 100.9 385.9 L 99.0 387.7 L 100.4 389.1 L 101.4 390.9 L 102.3 392.7 L 103.2 394.5 L 102.2 396.2 L 100.1 396.5 L 98.0 396.6 L 96.0 397.3 L 97.0 399.4 L 94.6 399.7 L 92.3 399.8 L 90.5 400.8 L 88.2 401.0 L 87.1 403.0 L 87.7 404.9 L 88.2 406.9 L 88.6 408.9 L 89.9 410.5 L 91.9 410.4 L 93.6 411.4 L 95.2 412.8 L 96.2 414.5 L 100.5 415.2 L 106.2 419.0 L 111.3 420.9 L 113.0 422.1 L 114.9 423.8 L 119.2 423.9 L 121.1 424.5 L 122.7 425.8 L 121.1 427.1 L 119.9 428.7 L 119.9 430.7 L 118.5 432.1 L 116.7 433.0 L 130.6 451.4 L 132.4 454.7 L 133.8 457.4 L 135.6 458.7 L 135.4 460.9 L 138.3 462.6 L 146.0 458.5 L 147.6 457.3 L 149.5 456.7 L 152.0 458.1 L 154.4 459.8 L 156.0 461.0 L 157.6 463.1 L 159.1 464.9 L 160.9 467.6 L 163.0 470.2 L 165.0 471.1 L 166.3 472.8 L 167.7 474.3 L 169.7 474.3 L 171.7 474.1 L 170.2 472.8 L 169.0 471.1 L 168.2 469.3 L 167.2 467.5 L 166.4 465.7 L 165.7 463.8 L 166.0 461.8 L 165.2 460.0 L 164.4 458.2 L 163.7 456.3 L 162.8 454.5 L 162.0 452.6 L 161.2 450.8 L 160.2 449.0 L 159.4 447.2 L 159.0 445.2 L 157.5 443.9 L 157.1 441.9 L 156.0 440.2 L 154.3 439.2 L 153.2 437.5 L 152.0 435.9 L 150.2 434.9 L 148.4 434.0 L 146.7 432.8 L 145.8 431.0 L 144.3 429.7 L 143.7 427.8 L 143.1 425.9 L 141.7 424.4 L 139.8 423.8 L 138.0 424.6 L 137.2 422.8 L 137.2 420.7 L 137.3 418.7 L 136.8 416.8 L 136.0 415.0 L 135.1 413.2 L 134.6 411.2 L 134.5 409.2 L 133.8 407.2 L 132.8 405.5 L 132.0 403.6 L 130.6 402.2 L 130.3 400.2 L 130.7 398.2 L 129.8 396.4 L 128.8 394.6 L 127.6 393.0 L 126.9 391.1 L 125.9 389.3 Z" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="rgba(255,255,255,0.06)" />
+
+            <circle cx="204.7" cy="77.1" r="8" fill="#d4a574" opacity="0.3">
+              <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="204.7" cy="77.1" r="5" fill="#d4a574"/>
+            <text x="204.7" y="65.1" text-anchor="middle" fill="white" font-size="11" font-family="Jost, sans-serif" font-weight="500" opacity="0.85">Moyale (Marsabit)</text>
+            <circle cx="377.0" cy="51.8" r="8" fill="#d4a574" opacity="0.3">
+              <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="377.0" cy="51.8" r="5" fill="#d4a574"/>
+            <text x="377.0" y="39.8" text-anchor="middle" fill="white" font-size="11" font-family="Jost, sans-serif" font-weight="500" opacity="0.85">Mandera</text>
+            <circle cx="266.3" cy="185.6" r="8" fill="#d4a574" opacity="0.3">
+              <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="266.3" cy="185.6" r="5" fill="#d4a574"/>
+            <text x="266.3" y="173.6" text-anchor="middle" fill="white" font-size="11" font-family="Jost, sans-serif" font-weight="500" opacity="0.85">Wajir</text>
+            <circle cx="241.1" cy="320.0" r="8" fill="#d4a574" opacity="0.3">
+              <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="241.1" cy="320.0" r="5" fill="#d4a574"/>
+            <text x="241.1" y="308.0" text-anchor="middle" fill="white" font-size="11" font-family="Jost, sans-serif" font-weight="500" opacity="0.85">Garissa</text>
+            <circle cx="114.2" cy="270.6" r="8" fill="#d4a574" opacity="0.3">
+              <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="114.2" cy="270.6" r="5" fill="#d4a574"/>
+            <text x="114.2" y="258.6" text-anchor="middle" fill="white" font-size="11" font-family="Jost, sans-serif" font-weight="500" opacity="0.85">Isiolo</text>
+        </svg>
+      </div>
+      <div class="map-legend">
+        <div class="ml-item">
+          <div class="ml-dot" style="background:var(--sand)"></div>
+          Active
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section id="school-data"
+    style="background:var(--rule); padding:6rem 5rem; border-top:1px solid rgba(58,107,74,0.15); border-bottom:1px solid rgba(58,107,74,0.15);">
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+      <div class="s-label" style="justify-content:center; margin-bottom:1.5rem;">Outreach Impact</div>
+      <h2 class="s-title" style="margin-bottom:3rem;">School <em>Outreach</em> Data</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+        <div
+          style="background:var(--white); padding:3rem; border:1px solid rgba(58,107,74,0.1); border-radius:2px; transition:transform 0.3s;"
+          onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:600; color:var(--green-dk); line-height:1; margin-bottom:1rem;">
+            340+</div>
+          <div
+            style="font-size:0.8rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-lt);">
+            Total Schools in Region</div>
+        </div>
+        <div
+          style="background:var(--white); padding:3rem; border:1px solid rgba(58,107,74,0.1); border-radius:2px; transition:transform 0.3s;"
+          onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div
+            style="font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:600; color:var(--blue); line-height:1; margin-bottom:1rem;">
+            124</div>
+          <div
+            style="font-size:0.8rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-lt);">
+            Schools Visited by NEYD</div>
+        </div>
+      </div>
+
+      <div style="margin-top:5rem; text-align:left;">
+        <h3
+          style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--ink); margin-bottom:2.5rem; text-align:center; font-weight:300;">
+          Breakdown by County</h3>
+
+        <div class="county-progress-list" style="display:flex; flex-direction:column; gap:1.5rem;">
+
+          <!-- Mandera County -->
+          <div class="cp-item"
+            style="background:var(--white); border:1px solid rgba(58,107,74,0.1); border-radius:2px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+              <h4
+                style="font-size:1.2rem; font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0; font-weight:600;">
+                Mandera County</h4>
+              <span style="font-size:0.8rem; font-weight:600; color:var(--green-dk); letter-spacing:0.05em;">30 / 80
+                Schools</span>
+            </div>
+            <div style="background:var(--rule); height:6px; border-radius:3px; overflow:hidden; margin-bottom:1.5rem;">
+              <div style="background:var(--green-dk); height:100%; width:37.5%; border-radius:3px;"></div>
+            </div>
+            <details style="cursor:pointer; outline:none;">
+              <summary
+                style="font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:0.1em; text-transform:uppercase; list-style:none; display:inline-block; border-bottom:1px solid rgba(58,156,184,0.3); padding-bottom:2px;">
+                View Visited Schools ▾</summary>
+              <div
+                style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed rgba(58,107,74,0.15); display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.8rem; font-size:0.85rem; color:var(--ink-lt);">
+                <div>• Mandera Primary School</div>
+                <div>• Elwak Secondary School</div>
+                <div>• Rhamu Girls High</div>
+                <div>• Lafey Boys Secondary</div>
+                <div style="font-style:italic; color:#aaa; font-size:0.8rem;">+ 26 more schools...</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Wajir County -->
+          <div class="cp-item"
+            style="background:var(--white); border:1px solid rgba(58,107,74,0.1); border-radius:2px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+              <h4
+                style="font-size:1.2rem; font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0; font-weight:600;">
+                Wajir County</h4>
+              <span style="font-size:0.8rem; font-weight:600; color:var(--green-dk); letter-spacing:0.05em;">35 / 90
+                Schools</span>
+            </div>
+            <div style="background:var(--rule); height:6px; border-radius:3px; overflow:hidden; margin-bottom:1.5rem;">
+              <div style="background:var(--green-dk); height:100%; width:38.8%; border-radius:3px;"></div>
+            </div>
+            <details style="cursor:pointer; outline:none;">
+              <summary
+                style="font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:0.1em; text-transform:uppercase; list-style:none; display:inline-block; border-bottom:1px solid rgba(58,156,184,0.3); padding-bottom:2px;">
+                View Visited Schools ▾</summary>
+              <div
+                style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed rgba(58,107,74,0.15); display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.8rem; font-size:0.85rem; color:var(--ink-lt);">
+                <div>• Wajir High School</div>
+                <div>• Griftu Boys Secondary</div>
+                <div>• Habaswein Girls School</div>
+                <div>• Tarbaj Primary School</div>
+                <div style="font-style:italic; color:#aaa; font-size:0.8rem;">+ 31 more schools...</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Garissa County -->
+          <div class="cp-item"
+            style="background:var(--white); border:1px solid rgba(58,107,74,0.1); border-radius:2px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+              <h4
+                style="font-size:1.2rem; font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0; font-weight:600;">
+                Garissa County</h4>
+              <span style="font-size:0.8rem; font-weight:600; color:var(--green-dk); letter-spacing:0.05em;">40 / 100
+                Schools</span>
+            </div>
+            <div style="background:var(--rule); height:6px; border-radius:3px; overflow:hidden; margin-bottom:1.5rem;">
+              <div style="background:var(--green-dk); height:100%; width:40%; border-radius:3px;"></div>
+            </div>
+            <details style="cursor:pointer; outline:none;">
+              <summary
+                style="font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:0.1em; text-transform:uppercase; list-style:none; display:inline-block; border-bottom:1px solid rgba(58,156,184,0.3); padding-bottom:2px;">
+                View Visited Schools ▾</summary>
+              <div
+                style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed rgba(58,107,74,0.15); display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.8rem; font-size:0.85rem; color:var(--ink-lt);">
+                <div>• Garissa High School</div>
+                <div>• NEP Girls High</div>
+                <div>• Dadaab Secondary</div>
+                <div>• Modagashe Primary</div>
+                <div style="font-style:italic; color:#aaa; font-size:0.8rem;">+ 36 more schools...</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Isiolo County -->
+          <div class="cp-item"
+            style="background:var(--white); border:1px solid rgba(58,107,74,0.1); border-radius:2px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+              <h4
+                style="font-size:1.2rem; font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0; font-weight:600;">
+                Isiolo County</h4>
+              <span style="font-size:0.8rem; font-weight:600; color:var(--green-dk); letter-spacing:0.05em;">10 / 30
+                Schools</span>
+            </div>
+            <div style="background:var(--rule); height:6px; border-radius:3px; overflow:hidden; margin-bottom:1.5rem;">
+              <div style="background:var(--green-dk); height:100%; width:33.3%; border-radius:3px;"></div>
+            </div>
+            <details style="cursor:pointer; outline:none;">
+              <summary
+                style="font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:0.1em; text-transform:uppercase; list-style:none; display:inline-block; border-bottom:1px solid rgba(58,156,184,0.3); padding-bottom:2px;">
+                View Visited Schools ▾</summary>
+              <div
+                style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed rgba(58,107,74,0.15); display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.8rem; font-size:0.85rem; color:var(--ink-lt);">
+                <div>• Isiolo Boys High</div>
+                <div>• Isiolo Girls Secondary</div>
+                <div>• Garba Tulla High</div>
+                <div>• Merti Primary School</div>
+                <div style="font-style:italic; color:#aaa; font-size:0.8rem;">+ 6 more schools...</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Marsabit County -->
+          <div class="cp-item"
+            style="background:var(--white); border:1px solid rgba(58,107,74,0.1); border-radius:2px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+              <h4
+                style="font-size:1.2rem; font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0; font-weight:600;">
+                Marsabit County</h4>
+              <span style="font-size:0.8rem; font-weight:600; color:var(--green-dk); letter-spacing:0.05em;">9 / 40
+                Schools</span>
+            </div>
+            <div style="background:var(--rule); height:6px; border-radius:3px; overflow:hidden; margin-bottom:1.5rem;">
+              <div style="background:var(--green-dk); height:100%; width:22.5%; border-radius:3px;"></div>
+            </div>
+            <details style="cursor:pointer; outline:none;">
+              <summary
+                style="font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:0.1em; text-transform:uppercase; list-style:none; display:inline-block; border-bottom:1px solid rgba(58,156,184,0.3); padding-bottom:2px;">
+                View Visited Schools ▾</summary>
+              <div
+                style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed rgba(58,107,74,0.15); display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.8rem; font-size:0.85rem; color:var(--ink-lt);">
+                <div>• Marsabit Boys High</div>
+                <div>• Moi Girls Marsabit</div>
+                <div>• Laisamis Secondary</div>
+                <div>• Moyale High School</div>
+                <div style="font-style:italic; color:#aaa; font-size:0.8rem;">+ 5 more schools...</div>
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expansion" style="background:var(--ivory); padding:7rem 5rem;">
+    <div class="s-label">Looking Ahead</div>
+    <h2 class="s-title">Future <em>Expansion</em> Horizons</h2>
+    <div class="who-pillars" style="margin-top:3rem;">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h4>Tana River County</h4>
+        <p>Exploratory visits and community dialogue are underway to launch digital literacy hubs by 2026.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h4>Samburu County</h4>
+        <p>Partnering with local civic organisations to introduce the Girls in STEM mentorship model.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h4>National Policy Advocacy</h4>
+        <p>Working diligently to scale our grassroots findings into national youth development frameworks.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <h4>Cross-Border Initiatives</h4>
+        <p>Researching opportunities to support youth in neighboring border towns across the Horn of Africa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="fb-brand" style="display:flex; align-items:center; gap:0.8rem;">
+          <img src="logo_clean.png" alt="NEYD Kenya Logo" style="height: 55px; width: 55px; object-fit: contain;">
+        </div>
+        <p class="fb-desc">North Eastern Youth Development — empowering young people to lead, build, and transform
+          communities across North Eastern Kenya.</p>
+      </div>
+      <div class="fc">
+        <h5>Organisation</h5>
+        <ul>
+          <li><a href="who-we-are.html">Who We Are</a></li>
+          <li><a href="programs.html">Our Programmes</a></li>
+          <li><a href="chapters.html">University Chapters</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="contact.html">Volunteer</a></li>
+          <li><a href="contact.html">Start a Chapter</a></li>
+          <li><a href="partners.html">Partner With Us</a></li>
+          <li><a href="contact.html">Donate</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="where-we-work.html">Where We Work</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Annual Report</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="footer-copy">© 2025 NEYD Kenya. All rights reserved. North Eastern Youth Development.</span>
+      <div class="social-row">
+        <a href="#" class="soc">X</a>
+        <a href="#" class="soc">in</a>
+        <a href="#" class="soc">Fb</a>
+        <a href="#" class="soc">Ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    const navAcr = document.getElementById('nav-acr');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+        navAcr.classList.remove('nav-acronym-light');
+      } else {
+        nav.classList.remove('scrolled');
+        navAcr.classList.add('nav-acronym-light');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => revealObs.observe(r));
+
+
+  </script>
+
+</body>
+
+</html>
